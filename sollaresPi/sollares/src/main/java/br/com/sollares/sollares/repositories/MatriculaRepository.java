@@ -4,10 +4,13 @@
  */
 package br.com.sollares.sollares.repositories;
 
+import br.com.sollares.sollares.model.Matricula;
+import org.springframework.data.jpa.repository.JpaRepository;
+
 /**
  *
  * @author layla
  */
-public interface MatriculaRepository {
+public interface MatriculaRepository extends JpaRepository<Integer, Matricula>{
     
 }
