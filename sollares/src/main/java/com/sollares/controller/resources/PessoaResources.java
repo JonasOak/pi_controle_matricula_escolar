@@ -1,4 +1,4 @@
-package com.sollares.resources;
+package com.sollares.controller.resources;
 
 import java.net.URI;
 import java.util.List;
@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.sollares.entities.Pessoa;
-import com.sollares.services.PessoaService;
+import com.sollares.controller.services.PessoaService;
+import com.sollares.model.entities.Pessoa;
 
 @RestController
 @RequestMapping(value = "/pessoas")

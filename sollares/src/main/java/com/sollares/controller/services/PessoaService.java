@@ -1,4 +1,4 @@
-package com.sollares.services;
+package com.sollares.controller.services;
 
 import java.util.List;
 import java.util.Optional;
@@ -6,8 +6,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.sollares.entities.Pessoa;
-import com.sollares.repositories.PessoaRepository;
+import com.sollares.model.entities.Pessoa;
+import com.sollares.model.repositories.PessoaRepository;
 
 @Service
 public class PessoaService {

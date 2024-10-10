@@ -1,12 +1,17 @@
-package com.sollares.entities;
+package com.sollares.model.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -23,6 +28,10 @@ public class Pessoa implements Serializable {
 	private String telefone;
 	private String cpf;
 	private String email;
+	
+	@JsonIgnore // cortar looping infinito na requisição
+	@OneToMany(mappedBy = "professor")
+	private List<Disciplina> disciplinas = new ArrayList<>();
 	
 	public Pessoa() {
 	}
@@ -103,6 +112,10 @@ public class Pessoa implements Serializable {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public List<Disciplina> getDisciplinas() {
+		return disciplinas;
 	}
 
 	@Override
