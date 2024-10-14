@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.sollares.model.entities.Matricula;
+import com.sollares.model.repositories.DisciplinaRepository;
 import com.sollares.model.repositories.MatriculaRepository;
 
 @Service
@@ -14,6 +15,9 @@ public class MatriculaService {
 
 	@Autowired
 	private MatriculaRepository repository;
+	
+	@Autowired
+	private DisciplinaRepository disciplinarepository;
 	
 	public List<Matricula> buscarTodos() {
 		return repository.findAll();
@@ -25,6 +29,12 @@ public class MatriculaService {
 	}
 	
 	public Matricula inserir(Matricula obj) {
+		List<Matricula> matriculas = disciplinarepository.findByDisciplina(obj.getDisciplina());
+	    int limiteAlunos = obj.getDisciplina().getLimiteAlunos();
+	    
+	    if (matriculas.size() >= limiteAlunos) {
+	        throw new IllegalStateException("O limite de alunos para esta disciplina já foi atingido.");
+	    }
 		return repository.save(obj);
 	}
 	
