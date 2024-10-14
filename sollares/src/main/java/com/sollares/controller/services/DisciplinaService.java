@@ -42,7 +42,7 @@ public class DisciplinaService {
 		entity.setNomeDisciplina(obj.getNomeDisciplina());
 		entity.setCargaHoraria(obj.getCargaHoraria());
 		entity.setLimiteAlunos(obj.getLimiteAlunos());
-
+		entity.setProfessor(obj.getProfessor());
 	}
 }
 	

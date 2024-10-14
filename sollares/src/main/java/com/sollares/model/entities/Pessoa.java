@@ -29,6 +29,10 @@ public class Pessoa implements Serializable {
 	private String cpf;
 	private String email;
 	
+	@JsonIgnore
+	@OneToMany(mappedBy = "aluno")
+	private List<Matricula> matriculas = new ArrayList<>();
+	
 	@JsonIgnore // cortar looping infinito na requisição
 	@OneToMany(mappedBy = "professor")
 	private List<Disciplina> disciplinas = new ArrayList<>();
