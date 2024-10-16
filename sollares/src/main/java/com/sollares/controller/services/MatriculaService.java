@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.sollares.exception.LimiteException;
 import com.sollares.model.entities.Matricula;
 import com.sollares.model.repositories.DisciplinaRepository;
 import com.sollares.model.repositories.MatriculaRepository;
@@ -29,13 +30,13 @@ public class MatriculaService {
 	}
 	
 	public Matricula inserir(Matricula obj) {
-		List<Matricula> matriculas = disciplinarepository.findByDisciplina(obj.getDisciplina());
+		List<Matricula> matriculas = repository.findByDisciplina(obj.getDisciplina());
 	    int limiteAlunos = obj.getDisciplina().getLimiteAlunos();
 	    
 	    if (matriculas.size() >= limiteAlunos) {
-	        throw new IllegalStateException("O limite de alunos para esta disciplina já foi atingido.");
+	        throw new LimiteException("O limite de alunos para esta disciplina já foi atingido.");
 	    }
-		return repository.save(obj);
+	    return repository.save(obj);
 	}
 	
 	public void deletar(Integer id) {

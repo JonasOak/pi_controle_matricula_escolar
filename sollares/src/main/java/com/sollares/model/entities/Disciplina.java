@@ -46,6 +46,8 @@ public class Disciplina implements Serializable {
 		this.professor = professor;
 		this.limiteAlunos = limiteAlunos;
 	}
+	
+	
 
 	public int getCodigo() {
 		return codigo;

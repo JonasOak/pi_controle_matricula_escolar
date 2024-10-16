@@ -35,6 +35,14 @@ public class Matricula implements Serializable {
 
 	public Matricula() {
 	}
+	
+	public Matricula(int idMat, String periodo, Disciplina disciplina, Pessoa aluno) {
+		this.idMat = idMat;
+		this.periodo = periodo;
+		this.disciplina = disciplina;
+		this.aluno = aluno;
+	}
+
 
 	public Matricula(int idMat, Disciplina disciplina, Pessoa aluno, Date dataMatricula, BigDecimal valorPago,
 			String periodo) {
@@ -46,7 +54,7 @@ public class Matricula implements Serializable {
 		this.valorPago = valorPago;
 		this.periodo = periodo;
 	}
-
+	
 	public int getIdMat() {
 		return idMat;
 	}

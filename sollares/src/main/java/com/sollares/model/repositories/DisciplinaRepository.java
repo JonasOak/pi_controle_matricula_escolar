@@ -8,7 +8,5 @@ import com.sollares.model.entities.Disciplina;
 import com.sollares.model.entities.Matricula;
 
 public interface DisciplinaRepository extends JpaRepository<Disciplina, Integer> {
-	
-	List<Matricula> findByDisciplina(Disciplina disciplina);
 
 }
