@@ -1,0 +1,47 @@
+@import url(./portal.css);
+
+:root {
+    --cor-de-fundo: linear-gradient(90deg, rgba(3,39,62,1) 0%, rgba(3,35,52,1) 10%, rgba(2,27,43,1) 24%, rgba(2,31,50,1)
+    46%, rgba(2,27,43,1) 74%, rgba(3,35,52,1) 86%, rgba(3,39,62,1) 98%);
+    --cor-nav: #e99f31;
+    --color-campos: white;   
+    --fonte: "Poppins";
+}
+
+
+.navbar {
+    background: var(--cor-de-fundo);
+    height: 50px;
+}
+
+
+.navbar-titulo {
+    color: var(--cor-nav);
+    font-family: var(--fonte);
+    font-size: 24px;
+    font-weight: bolder;
+}
+
+.nav-opcao {
+    color: var(--color-campos);
+    font-family: var(--fonte);
+    font-size: 16px;
+}
+
+.nav-item {
+    padding: 25px 15px 10px 15px;
+}
+
+.nav-opcao:hover {
+    color: var(--cor-nav);
+}
+
+.logo-nav {
+    position: fixed; 
+    right: 20px; 
+    bottom: 20px; 
+    height: auto; 
+    width: auto;
+    max-width: 150px; 
+    max-height: 150px; 
+}
