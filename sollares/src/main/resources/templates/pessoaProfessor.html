@@ -78,10 +78,10 @@
         <input type="text" class="form-control" id="inputId" th:name="idPessoa">
       </div>
       <div class="botao-formulario">
-        <button type="submit" class="btn btn-primary">Cadastrar</button>
-        <button type="button" class="btn btn-primary" disabled>Consultar</button>
-        <button type="button" class="btn btn-primary" disabled>Alterar</button>
-        <button type="button" class="btn btn-primary" disabled>Excluir</button>
+        <button type="submit" formmethod="post" formaction="/pessoaProfessor" class="btn btn-primary">Cadastrar</button>
+    	<button type="submit" formmethod="get" formaction="/pessoaProfessor/consultar" class="btn btn-primary">Consultar</button>
+    	<button type="submit" formmethod="post" formaction="/pessoaProfessor/alterar" class="btn btn-primary">Alterar</button>
+    	<button type="submit" formmethod="post" formaction="/pessoaProfessor/deletar" class="btn btn-primary">Excluir</button>
       </div>
     </form>
   </div>
