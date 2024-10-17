@@ -8,9 +8,9 @@
    <link rel="preconnect" href="https://fonts.googleapis.com">
    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-   <link rel="stylesheet" th:href="@{/static/css/portal.css}">
-   <link rel="stylesheet" th:href="@{/static/css/formulario.css}">
-  <title>PROFESSOR</title>
+   <link rel="stylesheet" href="../static/css/portal.css" th:href="@{/static/css/portal.css}">
+   <link rel="stylesheet" href="../static/css/formulario.css" th:href="@{/static/css/formulario.css}">
+  <title>Aluno</title>
   <link rel="shortcut icon" th:href="@{/static/imagens/sollares.png}" type="image/x-icon">	
 </head>
 <body>
@@ -20,26 +20,26 @@
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav">
           <li class="nav-item">
-             <a class="nav-opcao nav-link" th:href="@{/usuario}">Usuário</a>
+             <a class="nav-opcao nav-link" href="usuario.html" th:href="@{/usuario}">Usuário</a>
           </li>
           <li class="nav-item">
-            <a class="nav-opcao nav-link" th:href="@{/pessoaProfessor}">Professor</a>
+            <a class="nav-opcao nav-link" href="pessoaProfessor.html" th:href="@{/pessoaProfessor}">Professor</a>
           </li>
           <li class="nav-item">
             <a class="nav-opcao nav-link" th:href="@{/pessoaAluno}">Aluno</a>
           </li>
           <li class="nav-item">
-            <a class="nav-opcao nav-link" th:href="@{/disciplina}">Disciplina</a>
+            <a class="nav-opcao nav-link" href="disciplina.html" th:href="@{/disciplina}">Disciplina</a>
           </li>
           <li class="nav-opcao nav-item dropdown">
             <a class="nav-opcao nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Matricula
             </a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" th:href="@{/matricula}">Matricula</a></li>
-              <li><a class="dropdown-item" th:href="@{/faturamento}">Faturamento</a></li>
-              <li><a class="dropdown-item" th:href="@{/cursoProfessor}">Cursos - Professor</a></li>
-              <li><a class="dropdown-item" th:href="@{/cursoAluno}">Cursos - Aluno</a></li>
+              <li><a class="dropdown-item" href="matricula.html" th:href="@{/matricula}">Matricula</a></li>
+              <li><a class="dropdown-item" href="faturamento.html" th:href="@{/faturamento}">Faturamento</a></li>
+              <li><a class="dropdown-item" href="cursoProfessor.html" th:href="@{/cursoProfessor}">Cursos - Professor</a></li>
+              <li><a class="dropdown-item" href="cursoAluno.html" th:href="@{/cursoAluno}">Cursos - Aluno</a></li>
             </ul>
           </li>
         </ul>
@@ -86,7 +86,7 @@
     </form>
   </div>
   <div> 
-    <img class="logo-nav" th:src="@{/static/imagens/sollaresLogo.png}" alt="Logo Sollares">
+    <img class="logo-nav" src="../static/imagens/sollaresLogo.png" th:src="@{/static/imagens/sollaresLogo.png}" alt="Logo Sollares">
   </div> 	
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
