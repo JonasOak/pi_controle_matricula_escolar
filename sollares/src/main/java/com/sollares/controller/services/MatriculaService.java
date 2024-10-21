@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import com.sollares.exception.LimiteException;
 import com.sollares.model.entities.Matricula;
-import com.sollares.model.repositories.DisciplinaRepository;
 import com.sollares.model.repositories.MatriculaRepository;
 
 @Service
@@ -16,9 +15,6 @@ public class MatriculaService {
 
 	@Autowired
 	private MatriculaRepository repository;
-	
-	@Autowired
-	private DisciplinaRepository disciplinarepository;
 	
 	public List<Matricula> buscarTodos() {
 		return repository.findAll();
