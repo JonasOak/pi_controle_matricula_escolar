@@ -12,9 +12,11 @@ import org.springframework.context.annotation.Profile;
 import com.sollares.model.entities.Disciplina;
 import com.sollares.model.entities.Matricula;
 import com.sollares.model.entities.Pessoa;
+import com.sollares.model.entities.Usuario;
 import com.sollares.model.repositories.DisciplinaRepository;
 import com.sollares.model.repositories.MatriculaRepository;
 import com.sollares.model.repositories.PessoaRepository;
+import com.sollares.model.repositories.UsuarioRepository;
 
 @Configuration
 @Profile("test")
@@ -29,6 +31,9 @@ public class TestConfig implements CommandLineRunner {
 	@Autowired
 	private MatriculaRepository matriculaRepository;
 
+	@Autowired
+	private UsuarioRepository usuarioRepository;
+	
 	@Override
 	public void run(String... args) throws Exception {
 		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
@@ -47,7 +52,9 @@ public class TestConfig implements CommandLineRunner {
 		Matricula m2 = new Matricula(0, d3, p2, sdf.parse("14-10-2024"), new BigDecimal("300"), "2° período");
 		Matricula m3 = new Matricula(0, d3, p3, sdf.parse("14-10-2024"), new BigDecimal("600"), "1° período");
 		Matricula m4 = new Matricula(0, d3, p2, sdf.parse("14-10-2024"), new BigDecimal("300"), "2° período");
-
 		matriculaRepository.saveAll(Arrays.asList(m1, m2, m3, m4));
+		
+		Usuario u1 = new Usuario(0, "Jonas", "Aluno", "jonasOak", "123456", "emaildejonas@gmail.com");
+		usuarioRepository.saveAll(Arrays.asList(u1));
 	}
 }
