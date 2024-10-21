@@ -45,3 +45,18 @@
     max-width: 150px; 
     max-height: 150px; 
 }
+
+.roda-pe {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: rgba(3,39,62,1); 
+    text-align: center;
+    padding: 6px;
+}
+
+.rodape-titulo {
+	font-family: var(--fonte);
+	font-size: 10px;
+	color: var(--color-campos);
+}

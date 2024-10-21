@@ -12,21 +12,29 @@
 <title>Lista de Disciplinas</title>
 </head>
 <body>
-	<div>
-		<table class="table">
-  <thead class="d-flex">
-    <tr>
-      <th scope="col">ID</th>
-      <th scope="col">Nome</th>
-      <th scope="col">Carga Horária</th>
-      <th scope="col">Limite de Alunos</th>
-      <th scope="col">Professor</th>
-    </tr>
-  </thead>
-  <tbody>
-    </tbody>
-</table>
-	</div>
-	
+	<div class="container">
+        <h1>Lista de Disciplinas</h1>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Carga horária</th>
+                    <th>Limite de Alunos</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="disciplinas : ${disciplinas}">
+                    <td th:text="${disciplinas.codigo}"></td>
+                    <td th:text="${disciplinas.nomeDisciplina}"></td>
+                    <td th:text="${disciplinas.cargaHoraria}"></td>
+                    <td th:text="${disciplinas.limiteAlunos}"></td>                
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>	
 </body>
 </html>

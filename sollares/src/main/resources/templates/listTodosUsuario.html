@@ -10,33 +10,29 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../static/css/telasExtras.css" th:href="@{/css/telasExtras.css}">
   
-  <title>Lista de Professores</title>
+  <title>Lista de Usuários</title>
   <link rel="shortcut icon" th:href="@{/imagens/sollares.png}" type="image/x-icon">
 </head>
 <body>
-	<div class="container">
-        <h1>Lista de Professores</h1>
+    <div class="container">
+        <h1>Lista de Usuários</h1>
         <table class="table table-striped">
             <thead>
                 <tr>
                     <th>ID</th>
                     <th>Nome</th>
-                    <th>Endereço</th>
-                    <th>UF</th>
-                    <th>Telefone</th>
-                    <th>CPF</th>
+                    <th>Cargo</th>
                     <th>Email</th>
+                    <th>Login</th>
                 </tr>
             </thead>
             <tbody>
-                <tr th:each="pessoa : ${pessoa}">
-                    <td th:text="${pessoa.idPessoa}"></td>
-                    <td th:text="${pessoa.nome}"></td>
-                    <td th:text="${pessoa.endereco}"></td>
-                    <td th:text="${pessoa.uf}"></td>
-                    <td th:text="${pessoa.telefone}"></td>
-                    <td th:text="${pessoa.cpf}"></td>
-                    <td th:text="${pessoa.email}"></td>
+                <tr th:each="usuario : ${usuarios}">
+                    <td th:text="${usuario.idUsuario}"></td>
+                    <td th:text="${usuario.nome}"></td>
+                    <td th:text="${usuario.cargo}"></td>
+                    <td th:text="${usuario.email}"></td>
+                    <td th:text="${usuario.login}"></td>
                 </tr>
             </tbody>
         </table>
