@@ -42,3 +42,6 @@
   background:  rgba(3, 39, 62, 0.8);
 }
 
+table th, table td {
+  width: 250px; 
+}
