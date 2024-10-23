@@ -11,12 +11,11 @@
   <link rel="stylesheet" href="../static/css/portal.css" th:href="@{/css/portal.css}">
  <link rel="stylesheet" href="../static/css/formulario.css" th:href="@{/css/formulario.css}">
 
-  <title>MATRICULA</title>
+  <title>MATRÍCULA</title>
   <link rel="shortcut icon" th:href="@{/imagens/sollares.png}" type="image/x-icon">
 </head>
 
 <body>
-
   <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
       <h1 class="navbar-titulo">SOLLARES</h1>
@@ -28,7 +27,7 @@
           <li class="nav-item"><a class="nav-opcao nav-link" href="disciplina.html" th:href="@{/disciplina}">Disciplina</a></li>
           <li class="nav-item dropdown">
             <a class="nav-opcao nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Matricula
+              Matrícula
             </a>
             <ul class="dropdown-menu">
               <li><a class="dropdown-item" href="matricula.html" th:href="@{/matricula}">Matricula</a></li>
@@ -64,15 +63,15 @@
 <section>
   <div class="formulario-pessoa">
     <form class="row g-3" th:action="@{/matriculas}" method="post" th:object="${matricula}">
-      <h1>Matricula</h1>
+      <h1>Matrícula</h1>
       
-      <div class="col-md-6">
+      <div class="col-md-4">
         <label for="inputDisciplina" class="form-label">Disciplina</label>
         <input type="text" class="form-control" id="inputDisciplina" th:field="*{disciplina}">
       </div>
       
-      <div class="col-md-3">
-        <label for="inputDate" class="form-label">Data da Matricula</label>
+      <div class="col-md-2">
+        <label for="inputDate" class="form-label">Data da Matrícula</label>
         <input type="date" class="form-control" id="inputDate" th:field="*{dataMatricula}">
       </div>
       
@@ -108,7 +107,7 @@
     </form>
     <div class="botao-formulario">
     	<button type="submit" formmethod="post" formaction="/matriculas" class="btn btn-primary">Cadastrar</button>
-    	<button type="button" formmethod="post" formaction="/matriculas/buscarTodos" class="btn btn-primary">Listar</button>
+    	<button type="button" formmethod="post" formaction="/matriculas/buscarTodos" class="btn btn-primary">Listar Matrículas</button>
       </div>
   </div>
 </section>      

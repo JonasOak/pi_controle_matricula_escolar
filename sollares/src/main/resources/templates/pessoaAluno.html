@@ -69,7 +69,7 @@
  <section>
 	<div class="formulario-pessoa">
     <form class="row g-3" th:action="@{/pessoas}" method="post" th:object="pessoa">
-      <h1>Professor</h1>
+      <h1>Aluno</h1>
       <div class="col-md-6">
         <label for="inputNome4" class="form-label">Nome</label>
         <input type="text" class="form-control" id="inputNome4" th:field="*{nome}">
@@ -100,7 +100,7 @@
       </div>
       <div class="botao-formulario">
         <button type="submit" formmethod="post" formaction="/pessoaAluno" class="btn btn-primary">Cadastrar</button>
-    	<button type="button" formmethod="post" formaction="/pessoaAluno/buscarTodos" class="btn btn-primary">Listar</button>	
+    	<button type="button" formmethod="post" formaction="/pessoaAluno/buscarTodos" class="btn btn-primary">Listar Alunos</button>	
       </div>
     </form>
   </div>

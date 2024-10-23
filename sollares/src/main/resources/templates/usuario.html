@@ -49,12 +49,15 @@
 <main> 
 <section class="Consultar-cadastrado">
       <div class="container">
-          <div class="row justify-content-center">
+          <div class="row justify-content-center ">
               <div class="col-md-6">
                   <div class="card p-2 d-flex align-items-center">
                       <div class="form-group mb-0 d-flex align-items-center">
                           <label for="userId" class="me-3">Usuário</label>
-                          <input type="text" class="form-control" id="userId" placeholder="Digite o ID">
+                           <select th:field="*{usuarioSelecionado}" class="form-select">
+                            <option th:each="usuarios : ${usuarios}" th:value="${usuarios.id}" th:text="${usuarios.nome}" selected>Selecione</option>
+            
+                          </select>
                           <div class="d-grid gap-2 d-md-flex justify-content-md-end botao-extras">
                               <button type="button" formmethod="get" formaction="/usuarios/consultar" class="btn btn-primary">Consultar</button>
                               <button type="button" formmethod="post" formaction="/usuarios/alterar" class="btn btn-primary">Alterar</button>

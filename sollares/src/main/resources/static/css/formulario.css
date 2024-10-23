@@ -16,8 +16,12 @@
     margin-top: 10px;
 }
 
-.form-group input {
+.form-select {
   margin-right: 1rem; 
+}
+
+.form-control {
+  margin-right: 1rem;
 }
 
 .botao-extras button {
@@ -37,7 +41,7 @@
     font-size: 24px;
     font-weight: 500;
     display: flex;
-    justify-content:center;
+    justify-content: center;
     align-items: center;
     gap: 10px;   
 }
