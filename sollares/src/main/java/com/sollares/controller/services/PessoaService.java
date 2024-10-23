@@ -21,7 +21,14 @@ public class PessoaService {
 	
 	public Pessoa buscarPorId(Integer id) {
 		Optional<Pessoa> obj = repository.findById(id);
-		return obj.get();
+		Pessoa pessoa = null;
+		if (obj.isPresent()) {
+			pessoa = obj.get();
+		}
+		else {
+			throw new RuntimeException("Pessoa não encontrada");
+		}
+		return pessoa;
 	}
 	
 	public Pessoa inserir(Pessoa obj) {
