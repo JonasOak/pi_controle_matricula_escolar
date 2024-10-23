@@ -7,6 +7,7 @@ import java.util.Objects;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -24,8 +25,14 @@ public class Disciplina implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int codigo;
+	
+	@Column(name = "nome_disciplina")
 	private String nomeDisciplina;
+	
+	@Column(name = "carga_horaria")
 	private int cargaHoraria;
+	
+	@Column(name = "limite_alunos")
 	private int limiteAlunos;
 	
 	@ManyToOne
