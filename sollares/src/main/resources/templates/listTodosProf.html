@@ -29,14 +29,14 @@
                 </tr>
             </thead>
             <tbody>
-                <tr th:each="pessoas : ${pessoa}">
-                    <td th:text="${pessoas.idPessoa}"></td>
-                    <td th:text="${pessoas.nome}"></td>
-                    <td th:text="${pessoas.endereco}"></td>
-                    <td th:text="${pessoas.uf}"></td>
-                    <td th:text="${pessoas.telefone}"></td>
-                    <td th:text="${pessoas.cpf}"></td>
-                    <td th:text="${pessoas.email}"></td>
+                <tr th:each="professor : ${listaProfessores}">
+                    <td th:text="${professor.idPessoa}"></td>
+                    <td th:text="${professor.nomePessoa}"></td>
+                    <td th:text="${professor.endereco}"></td>
+                    <td th:text="${professor.uf}"></td>
+                    <td th:text="${professor.telefone}"></td>
+                    <td th:text="${professor.cpf}"></td>
+                    <td th:text="${professor.email}"></td>
                 </tr>
             </tbody>
         </table>
