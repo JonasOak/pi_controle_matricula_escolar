@@ -7,6 +7,23 @@
     --fonte: "Poppins";
 }
 
+.card {
+    font-family: var(--fonte);
+    font-size: 20px;
+    gap: 10px;
+    border: solid;
+    padding: 10px 8px;
+    margin-top: 10px;
+}
+
+.form-group input {
+  margin-right: 1rem; 
+}
+
+.botao-extras button {
+	background: var(--cor-de-fundo);
+}
+
 .formulario-pessoa {
     font-family: var(--fonte);
     font-size: 16px;
@@ -34,6 +51,6 @@
     background: rgba(3, 39, 62, 0.8); 
 }
 
-button:disabled {
-    cursor: not-allowed; /*nao esta mudando o curso*/
+button {
+    cursor: not-allowed;
 }

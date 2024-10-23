@@ -26,13 +26,13 @@
                 </tr>
             </thead>
             <tbody>
-                <tr th:each="matricula : ${matricula}">
-                    <td th:text="${matricula.idMat}"></td>
-                    <td th:text="${matricula.disciplina}"></td>
-                    <td th:text="${matricula.aluno}"></td>
-                    <td th:text="${matricula.dataMatricula}"></td>
-                    <td th:text="${matricula.valorPago}"></td>
-                    <td th:text="${matricula.periodo}"></td>
+                <tr th:each="matriculas : ${matricula}">
+                    <td th:text="${matriculas.idMat}"></td>
+                    <td th:text="${matriculas.disciplina}"></td>
+                    <td th:text="${matriculas.aluno}"></td>
+                    <td th:text="${matriculas.dataMatricula}"></td>
+                    <td th:text="${matriculas.valorPago}"></td>
+                    <td th:text="${matriculas.periodo}"></td>
                 </tr>
             </tbody>
         </table>

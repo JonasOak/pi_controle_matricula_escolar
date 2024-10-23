@@ -27,12 +27,12 @@
                 </tr>
             </thead>
             <tbody>
-                <tr th:each="usuario : ${usuarios}">
-                    <td th:text="${usuario.idUsuario}"></td>
-                    <td th:text="${usuario.nome}"></td>
-                    <td th:text="${usuario.cargo}"></td>
-                    <td th:text="${usuario.email}"></td>
-                    <td th:text="${usuario.login}"></td>
+                <tr th:each="usuarios : ${usuario}">
+                    <td th:text="${usuarios.idUsuario}"></td>
+                    <td th:text="${usuarios.nome}"></td>
+                    <td th:text="${usuarios.cargo}"></td>
+                    <td th:text="${usuarios.email}"></td>
+                    <td th:text="${usuarios.login}"></td>
                 </tr>
             </tbody>
         </table>
