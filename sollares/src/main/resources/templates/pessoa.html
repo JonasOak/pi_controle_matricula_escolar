@@ -41,7 +41,7 @@
               Matricula
             </a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="matricula.html" th:href="@{/matricula}">Matricula</a></li>
+              <li><a class="dropdown-item" href="matricula.html" th:href="@{/manterMatricula}">Matricula</a></li>
               <li><a class="dropdown-item" href="faturamento.html" th:href="@{/faturamento}">Faturamento</a></li>
               <li><a class="dropdown-item" href="cursoProfessor.html" th:href="@{/cursoProfessor}">Cursos - Professor</a></li>
               <li><a class="dropdown-item" href="cursoAluno.html" th:href="@{/cursoAluno}">Cursos - Aluno</a></li>
@@ -105,7 +105,7 @@
       </div>
       <div class="botao-formulario">
 		<button type="submit" class="btn btn-primary">Cadastrar</button>
-		    <button type="button" class="btn btn-primary" th:onclick="'location.href=\'' + @{/pessoas} + '\''">Listar Pessoas</button>
+		<button type="button" class="btn btn-primary" th:onclick="'location.href=\'' + @{/pessoas} + '\''">Listar Pessoas</button>
       </div>
     </form>
   </div>
