@@ -1,6 +1,5 @@
 package com.sollares.controller.resources;
 
-import java.net.URI;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,11 +8,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.sollares.controller.services.PessoaService;
 import com.sollares.model.entities.Pessoa;
@@ -27,6 +26,24 @@ public class PessoaResources {
 	
 	@Autowired
     private PessoaRepository pessoaRepository;
+	
+	@GetMapping("/")
+	public String getVisualizarPortal(Model model) {
+	    return "portal";
+	}
+	
+	@GetMapping("/manterPessoa")
+	public String getCrudPessoa(Model model) {
+		model.addAttribute("pessoa", new Pessoa());
+		return "pessoa";
+	}
+	
+	@GetMapping("/pessoas")
+	public String getVisualizarPessoas(Model model) {
+		List<Pessoa> listaPessoas = servico.buscarTodos();
+		model.addAttribute("listaPessoas", listaPessoas);
+		return "listTodasPessoas";
+	}
 	
 	@GetMapping("/professores")
 	public String getVisualizarProfessores(Model model) {
@@ -42,24 +59,17 @@ public class PessoaResources {
 		return "listTodosAlun";
 	}
 	
-	@GetMapping
-	public ResponseEntity<List<Pessoa>> buscarTodos() {
-		List<Pessoa> list = servico.buscarTodos();
-		return ResponseEntity.ok().body(list);
-	}
+	@GetMapping("/pessoa/{id}")
+    public String buscarPessoa(@PathVariable(value = "id") long id,Model model) {
+        Pessoa pessoa = servico.buscarPorId((int) id);
+        return "pessoaProfessor";
+    }
 	
-	@GetMapping(value = "/{id}")
-	public ResponseEntity<Pessoa> buscarPorId(@PathVariable Integer id) {
-		Pessoa obj = servico.buscarPorId(id);
-		return ResponseEntity.ok().body(obj);
-	}
-	
-	@PostMapping
-	public ResponseEntity<Pessoa> inserir(@RequestBody Pessoa obj) {
-		obj = servico.inserir(obj);
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getIdPessoa()).toUri();
-		return ResponseEntity.created(uri).body(obj);
-	}
+    @PostMapping("/pessoa")
+    public String inserir(@ModelAttribute("pessoa") Pessoa pessoa) {
+        servico.inserir(pessoa);
+        return "redirect:/pessoas";
+    }
 	
 	@DeleteMapping(value = "/{id}")
 	public ResponseEntity<Void> deletar(@PathVariable Integer id) {
