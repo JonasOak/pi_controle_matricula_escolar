@@ -21,12 +21,16 @@
           <li class="nav-item">
              <a class="nav-opcao nav-link" aria-current="page" href="usuario.html" th:href="@{/usuario}">Usuário</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-opcao nav-link" href="pessoaProfessor.html" th:href="@{/pessoaProfessor}">Professor</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-opcao nav-link" href="pessoaAluno.html" th:href="@{/cadastroPessoa}">Aluno</a>
-          </li>
+          <li class="nav-opcao nav-item dropdown">
+		    <a class="nav-opcao nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+		      Pessoa
+		    </a>
+		    <ul class="dropdown-menu">
+		      <li><a class="dropdown-item" href="" th:href="@{/manterPessoa}">Pessoa</a></li>
+		      <li><a class="dropdown-item" href="" th:href="@{/alunos}">Lista - Alunos</a></li>
+		      <li><a class="dropdown-item" href="" th:href="@{/professores}">Lista - Professores</a></li>
+		    </ul>
+		  </li>
           <li class="nav-item">
             <a class="nav-opcao nav-link" href="disciplina.html" th:href="@{/disciplina}">Disciplina</a>
           </li>
