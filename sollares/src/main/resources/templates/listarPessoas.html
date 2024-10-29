@@ -34,12 +34,12 @@
                           </div>
                       </form>
                   </div>
-				  <p th:if="${ErroDeletar}" class="alert alert-danger" th:text="${ErroDeletar}"></p>
-				  <p th:if="${ErroInserir}" class="alert alert-danger" th:text="${ErroInserir}"></p>
-				  <p th:if="${PessoaDeletada}" class="alert alert-primary" th:text="${PessoaDeletada}"></p>
-				  <p th:if="${PessoaInserida}" class="alert alert-primary" th:text="${PessoaInserida}"></p>
-				  <p th:if="${PessoaAtualizada}" class="alert alert-primary" th:text="${PessoaAtualizada}"></p>
-				  <p th:if="${PessoaCadastrada}" class="alert alert-primary" th:text="${PessoaCadastrada}"></p>
+				  <p th:if="${ErroDeletar}" class="alert alert-danger mensagem" th:text="${ErroDeletar}"></p>
+				  <p th:if="${ErroInserir}" class="alert alert-danger mensagem" th:text="${ErroInserir}"></p>
+				  <p th:if="${PessoaDeletada}" class="alert alert-primary mensagem" th:text="${PessoaDeletada}"></p>
+				  <p th:if="${PessoaInserida}" class="alert alert-primary mensagem" th:text="${PessoaInserida}"></p>
+				  <p th:if="${PessoaAtualizada}" class="alert alert-primary mensagem" th:text="${PessoaAtualizada}"></p>
+				  <p th:if="${PessoaCadastrada}" class="alert alert-primary mensagem" th:text="${PessoaCadastrada}"></p>
               </div>
           </div>
       </div> 
@@ -66,8 +66,11 @@
                     <td th:text="${pessoa.telefone}"></td>
                     <td th:text="${pessoa.cpf}"></td>
                     <td th:text="${pessoa.email}"></td>
-                    <td><a class='btn' th:href="@{/atualizarPessoa/{id}(id=${pessoa.idPessoa})}">Atualizar</a></td>
-        			<td><a class='btn' th:href="@{/deletarPessoa/{id}(id=${pessoa.idPessoa})}">Deletar</a></td>
+                    <td><select onchange="if(this.value) location = this.value;">
+                <option value="">Selecione...</option>
+                <option th:value="@{/atualizarPessoa/{id}(id=${pessoa.idPessoa})}">Atualizar</option>
+                <option th:value="@{/deletarPessoa/{id}(id=${pessoa.idPessoa})}">Excluir</option>
+            </select>
                 </tr>
             </tbody>
         </table>

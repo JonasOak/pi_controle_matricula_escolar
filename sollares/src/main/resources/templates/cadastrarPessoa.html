@@ -59,13 +59,13 @@
         <label for="inputNome4" class="form-label">Nome</label>
         <input type="text" class="form-control" id="inputNome4" th:field="*{nomePessoa}">
       </div>
-      <div class="col-md-3">
+      <div class="col-md-2">
         <label for="inputCpf4" class="form-label">CPF</label>
         <input type="text" class="form-control" id="inputCpf4" th:field="*{cpf}">
       </div>
-      <div class="col-md-1">
-        <label for="inputUf" class="form-label">UF</label>
-        <input type="text" class="form-control" id="inputUf" th:field="*{uf}">
+      <div class="col-md-3">
+        <label for="inputTelefone" class="form-label">Telefone</label>
+        <input type="text" class="form-control" id="inputTelefone" th:field="*{telefone}">
       </div>
       <div class="col-md-6">
         <label for="inputAddress" class="form-label">Endereço</label>
@@ -75,16 +75,13 @@
         <label for="inputEmail4" class="form-label">Email</label>
         <input type="email" class="form-control" id="inputEmail4" th:field="*{email}">
       </div>
-      <div class="col-md-3">
-        <label for="inputTelefone" class="form-label">Telefone</label>
-        <input type="text" class="form-control" id="inputTelefone" th:field="*{telefone}">
-      </div>
-      <div class="col-md-2">
-        <label for="inputId" class="form-label">ID</label>
-        <input disabled type="number" class="form-control" id="inputId" th:field="*{idPessoa}">
+       <div class="col-md-1">
+        <label for="inputUf" class="form-label">UF</label>
+        <input type="text" class="form-control" id="inputUf" th:field="*{uf}">
       </div>
       <div class="botao-formulario">
 		<button type="submit" class="btn btn-primary">Cadastrar</button>
+		<button type="button" class="btn btn-primary">Voltar</button>
       </div>
     </form>
   </div>
