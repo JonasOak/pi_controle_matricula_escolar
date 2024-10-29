@@ -31,6 +31,10 @@ public class PessoaService {
 		return pessoa;
 	}
 	
+	public List<Pessoa> buscarPorNome(String nomePessoa) {
+	    return repository.buscarNomes(nomePessoa);
+	}
+	
 	public Pessoa inserir(Pessoa obj) {
 		return repository.save(obj);
 	}
@@ -39,12 +43,11 @@ public class PessoaService {
 		repository.deleteById(id);
 	}
 	
-	public Pessoa atualizar(Integer id, Pessoa obj) {
-		Pessoa entity = repository.getReferenceById(id);
-		atualizarDados(entity, obj);
-		return repository.save(entity);
+	public void atualizar(Pessoa obj) {
+		repository.save(obj);
 	}
 
+	@SuppressWarnings("unused")
 	private void atualizarDados(Pessoa entity, Pessoa obj) {
 		entity.setNomePessoa(obj.getNomePessoa());
 		entity.setEndereco(obj.getEndereco());
