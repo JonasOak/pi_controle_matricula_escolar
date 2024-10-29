@@ -42,6 +42,7 @@ public class PessoaResources {
 	public String getVisualizarPessoas(Model model) {
 		List<Pessoa> listaPessoas = servico.buscarTodos();
 		model.addAttribute("listaPessoas", listaPessoas);
+		model.addAttribute("pessoa", new Pessoa());
 		return "listTodasPessoas";
 	}
 	
@@ -82,5 +83,5 @@ public class PessoaResources {
 		obj = servico.atualizar(id, obj);
 		return ResponseEntity.ok().body(obj);
 	}
-	
+		
 }

@@ -24,10 +24,6 @@
   margin-right: 1rem;
 }
 
-.botao-extras button {
-	background: var(--cor-de-fundo);
-}
-
 .formulario-pessoa {
     font-family: var(--fonte);
     font-size: 16px;

@@ -18,6 +18,12 @@
     display: block;
 }
 
+.tabela-pessoas {
+    margin: 25px 50px 50px 50px;
+    border: solid;
+    padding: 20px;
+}
+
 .botao-consultar button{
   font-family: var(--fonte);
   font-size: 18px;
@@ -26,20 +32,16 @@
   background: var(--cor-de-fundo);
 }
 
-
-.botao-consultar-perfil {
-  font-family: var(--fonte);
-  font-size: 18px;
-  padding: 0 4px 0 4px;
-  background: var(--cor-de-fundo);
-}
-
 .botao-consultar button:hover {
   background: rgba(3, 39, 62, 0.8);
 }
 
-.botao-consultar-perfil button:hover {
-  background:  rgba(3, 39, 62, 0.8);
+.botao-extras button {
+	background: var(--cor-de-fundo);
+}
+
+.botao-extras  button:hover {
+    background: rgba(3, 39, 62, 0.8); 
 }
 
 table th, table td {
