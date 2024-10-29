@@ -16,7 +16,7 @@
 <body>
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
-      <a href="portal.html" th:href="@{/portal.html}" class="navbar-titulo">SOLLARES</a>
+      <a href="portal.html" th:href="@{/index}" class="navbar-titulo">SOLLARES</a>
     </div>
   </nav>
 <main>
@@ -25,15 +25,21 @@
           <div class="row justify-content-center">
               <div class="col-md-5">
                   <div class="card p-2 d-flex align-items-center">
-                      <div class="form-group mb-0 d-flex align-items-center" th:action="@{/pessoa/buscar}" method="get" th:object="${pessoa}">
+                      <form class="form-group mb-0 d-flex align-items-center" th:action="@{/pessoa/buscar}" method="get">
                           <label for="userId" class="me-3">Pessoa</label>
-                          <input type="text" class="form-control" id="userId" th:field="*{idPessoa}" placeholder="Digite o ID">
+                          <input type="text" class="form-control" id="nomePessoa" name= "nome" placeholder="Digite o nome">
                           <div class="d-grid gap-2 d-md-flex justify-content-md-end botao-extras">
                               <button type="submit" class="btn btn-primary">Consultar</button>
-                              <button type="button" class="btn btn-primary" th:onclick="'location.href=\'' + @{/manterPessoa} + '\''">Cadastrar</button>
+                              <button type="button" class="btn btn-primary" th:onclick="'location.href=\'' + @{/cadastrarPessoa} + '\''">Cadastrar</button>
                           </div>
-                      </div>
+                      </form>
                   </div>
+				  <p th:if="${ErroDeletar}" class="alert alert-danger" th:text="${ErroDeletar}"></p>
+				  <p th:if="${ErroInserir}" class="alert alert-danger" th:text="${ErroInserir}"></p>
+				  <p th:if="${PessoaDeletada}" class="alert alert-primary" th:text="${PessoaDeletada}"></p>
+				  <p th:if="${PessoaInserida}" class="alert alert-primary" th:text="${PessoaInserida}"></p>
+				  <p th:if="${PessoaAtualizada}" class="alert alert-primary" th:text="${PessoaAtualizada}"></p>
+				  <p th:if="${PessoaCadastrada}" class="alert alert-primary" th:text="${PessoaCadastrada}"></p>
               </div>
           </div>
       </div> 
@@ -60,8 +66,8 @@
                     <td th:text="${pessoa.telefone}"></td>
                     <td th:text="${pessoa.cpf}"></td>
                     <td th:text="${pessoa.email}"></td>
-                    <td><a class='btn ' href='update_produtos.php'>Atualizar</a></td>
-        			<td><a class='btn ' href='deletar_produtos.php'>Deletar</a></td>
+                    <td><a class='btn' th:href="@{/atualizarPessoa/{id}(id=${pessoa.idPessoa})}">Atualizar</a></td>
+        			<td><a class='btn' th:href="@{/deletarPessoa/{id}(id=${pessoa.idPessoa})}">Deletar</a></td>
                 </tr>
             </tbody>
         </table>

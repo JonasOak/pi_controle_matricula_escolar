@@ -16,37 +16,37 @@
 <body>
 	<nav class="navbar navbar-expand-lg bg-body-tertiary">
 		 <div class="container-fluid">
-            <a href="portal.html" th:href="@{/portal.html}" class="navbar-titulo">SOLLARES</a>
+            <a href="portal.html" th:href="@{/index}" class="navbar-titulo">SOLLARES</a>
         </div>
 	</nav>
 <main>
 <section>
 	<div class="formulario-pessoa">
-    <form class="row g-3" th:action="@{/pessoa}" method="" th:object="${pessoa}">
+    <form class="row g-3" th:action="@{/confirmarDeletar/{id}(id=${pessoa.idPessoa})}" method="GET" th:object="${pessoa}">
       <h1>Pessoa</h1>
       <div class="col-md-6">
         <label for="inputNome4" class="form-label">Nome</label>
-        <input type="text" class="form-control" id="inputNome4" th:field="*{nomePessoa}">
+        <input disabled type="text" class="form-control" id="inputNome4" th:field="*{nomePessoa}">
       </div>
       <div class="col-md-3">
         <label for="inputCpf4" class="form-label">CPF</label>
-        <input type="text" class="form-control" id="inputCpf4" th:field="*{cpf}">
+        <input disabled type="text" class="form-control" id="inputCpf4" th:field="*{cpf}">
       </div>
       <div class="col-md-1">
         <label for="inputUf" class="form-label">UF</label>
-        <input type="text" class="form-control" id="inputUf" th:field="*{uf}">
+        <input disabled type="text" class="form-control" id="inputUf" th:field="*{uf}">
       </div>
       <div class="col-md-6">
         <label for="inputAddress" class="form-label">Endereço</label>
-        <input type="text" class="form-control" id="inputAddress" th:field="*{endereco}">
+        <input disabled type="text" class="form-control" id="inputAddress" th:field="*{endereco}">
       </div>
       <div class="col-md-4">
         <label for="inputEmail4" class="form-label">Email</label>
-        <input type="email" class="form-control" id="inputEmail4" th:field="*{email}">
+        <input disabled type="email" class="form-control" id="inputEmail4" th:field="*{email}">
       </div>
       <div class="col-md-3">
         <label for="inputTelefone" class="form-label">Telefone</label>
-        <input type="text" class="form-control" id="inputTelefone" th:field="*{telefone}">
+        <input disabled type="text" class="form-control" id="inputTelefone" th:field="*{telefone}">
       </div>
       <div class="col-md-2">
         <label for="inputId" class="form-label">ID</label>

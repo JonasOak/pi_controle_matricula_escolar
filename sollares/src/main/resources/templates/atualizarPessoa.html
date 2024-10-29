@@ -16,13 +16,14 @@
 <body>
 	<nav class="navbar navbar-expand-lg bg-body-tertiary">
 		 <div class="container-fluid">
-            <a href="portal.html" th:href="@{/portal.html}" class="navbar-titulo">SOLLARES</a>
+            <a href="portal.html" th:href="@{/index}" class="navbar-titulo">SOLLARES</a>
         </div>
 	</nav>
 <main>
 <section>
 	<div class="formulario-pessoa">
-    <form class="row g-3" th:action="@{/pessoa}" method="post" th:object="${pessoa}">
+    <form class="row g-3" th:action="@{/confirmarAtualizar/{id}(id=${pessoa.idPessoa})}" method="POST" th:object="${pessoa}">
+	  <input type="hidden" th:field="*{idPessoa}"/>
       <h1>Pessoa</h1>
       <div class="col-md-6">
         <label for="inputNome4" class="form-label">Nome</label>
