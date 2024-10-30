@@ -1,0 +1,68 @@
+@import url("/css/login.css");
+
+:root {
+    --cor-de-fundo: linear-gradient(90deg, rgba(3,39,62,1) 0%, rgba(3,35,52,1) 10%, rgba(2,27,43,1) 24%, rgba(2,31,50,1)
+    46%, rgba(2,27,43,1) 74%, rgba(3,35,52,1) 86%, rgba(3,39,62,1) 98%);
+    --cor-botao: #FFC164;
+    --color-campos: white;   
+    --fonte: "Poppins";
+}
+
+.acesso-externo {
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.acesso-externo-form {
+    position: absolute;
+    z-index: 1;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px; 
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.8);  
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.externo-logo-img {
+    width: 180px; 
+    height: auto; 
+    margin-bottom: 20px; 
+}
+
+.externo-form-botao {
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    margin-top: 20px;
+}
+
+.externo-form-botao {
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    margin-top: 20px;  
+  }
+
+.input-login {
+    font-size: 14px;
+    width: 90%; 
+    padding: 10px; 
+    margin: 10px auto; 
+    box-sizing: border-box;
+    display: block;
+}
+
+.input-botao {
+    border-radius: 6px;
+    background-color: var(--cor-botao);
+    font-family: var(--fonte);
+    font-size: 16px;
+    padding: 10px 20px;
+}
+

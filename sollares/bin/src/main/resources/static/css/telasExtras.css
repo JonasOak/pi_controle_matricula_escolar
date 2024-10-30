@@ -1,0 +1,49 @@
+@import url(portal.css);
+@import url(telasExtras.css);
+
+:root {
+    --cor-de-fundo: linear-gradient(90deg, rgba(3,39,62,1) 0%, rgba(3,35,52,1) 10%, rgba(2,27,43,1) 24%, rgba(2,31,50,1)
+    46%, rgba(2,27,43,1) 74%, rgba(3,35,52,1) 86%, rgba(3,39,62,1) 98%);   
+    --fonte: "Poppins";
+}
+
+
+.formulario-telasExtras {
+    padding: 10px;
+    max-width: 300px;
+    margin: 22px;
+    font-family: var(--fonte);
+    font-size: 24px;
+    font-weight: 400;
+    display: block;
+}
+
+.tabela-pessoas {
+    margin: 25px 50px 50px 50px;
+    border: solid;
+    padding: 20px;
+}
+
+.botao-consultar button{
+  font-family: var(--fonte);
+  font-size: 18px;
+  font-weight: 400;
+  margin-top: 15px;  
+  background: var(--cor-de-fundo);
+}
+
+.botao-consultar button:hover {
+  background: rgba(3, 39, 62, 0.8);
+}
+
+.botao-extras button {
+	background: var(--cor-de-fundo);
+}
+
+.botao-extras  button:hover {
+    background: rgba(3, 39, 62, 0.8); 
+}
+
+table th, table td {
+  width: 250px; 
+}
