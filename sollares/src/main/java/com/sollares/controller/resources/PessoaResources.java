@@ -31,10 +31,10 @@ public class PessoaResources {
 	    return "portal";
 	}
 	
-	@GetMapping("/cadastrarPessoa")
+	@GetMapping("/pessoaCadastrar")
 	public String getCrudPessoa(Model model) {
 		model.addAttribute("pessoa", new Pessoa());
-		return "cadastrarPessoa";
+		return "pessoaCadastrar";
 	}
 	
 	@GetMapping("/pessoas")
@@ -103,17 +103,17 @@ public class PessoaResources {
         return "redirect:/pessoas";
     }
 	
-	@GetMapping("/deletarPessoa/{id}")
+	@GetMapping("/pessoaDeletar/{id}")
 	public String mostrarDeletrarPessoa(@PathVariable(value = "id") int id, Model model) {
 		Pessoa pessoa = servico.buscarPorId(id);
 		model.addAttribute("pessoa", pessoa);
-		return "deletarPessoa";
+		return "pessoaDeletar";
 	}
 	
-	@GetMapping("/atualizarPessoa/{id}")
+	@GetMapping("/pessoaAtualizar/{id}")
 	public String mostrarAtualizarPessoa(@PathVariable(value = "id") int id, Model model) {
 		Pessoa pessoa = servico.buscarPorId(id);
 		model.addAttribute("pessoa", pessoa);
-		return "atualizarPessoa";
+		return "pessoaAtualizar";
 	}	
 }
