@@ -71,10 +71,10 @@ public class PessoaResources {
     	try {
     		servico.inserir(pessoa);
     	} catch (Exception e) {
-    		redirectAttributes.addFlashAttribute("ErroInserir", "Algum erro impediu de cadastrar uma pessoa.");
+    		redirectAttributes.addFlashAttribute("ErroInserir", "Algum erro impediu de cadastramento.");
             return "redirect:/pessoas";
     	}
-    	redirectAttributes.addFlashAttribute("PessoaCadastrada", "Pessoa cadastrada com sucesso.");
+    	redirectAttributes.addFlashAttribute("PessoaCadastrada", "cadastrado feito com sucesso.");
         return "redirect:/pessoas";
     }
     
@@ -83,9 +83,9 @@ public class PessoaResources {
         try {
             pessoa.setIdPessoa(id); 
             servico.atualizar(pessoa);
-            redirectAttributes.addFlashAttribute("PessoaAtualizada", "Pessoa atualizada com sucesso.");
+            redirectAttributes.addFlashAttribute("PessoaAtualizada", "Atualização feita com sucesso.");
         } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("ErroAtualizar", "Algum erro impediu a atualização da pessoa.");
+            redirectAttributes.addFlashAttribute("ErroAtualizar", "Algum erro impediu a atualização.");
             return "redirect:/pessoas";
         }
         return "redirect:/pessoas";
@@ -99,7 +99,7 @@ public class PessoaResources {
             redirectAttributes.addFlashAttribute("ErroDeletar", "Não é possível deletar essa pessoa pois ela está associada como aluno ou professor.");
             return "redirect:/pessoas";
         }
-    	redirectAttributes.addFlashAttribute("PessoaDeletada", "Pessoa deletada com sucesso.");
+    	redirectAttributes.addFlashAttribute("PessoaDeletada", "Exclusão com sucesso.");
         return "redirect:/pessoas";
     }
 	
