@@ -26,11 +26,6 @@ public class PessoaResources {
 	@Autowired
     private PessoaRepository pessoaRepository;
 	
-	@GetMapping("/index")
-	public String getVisualizarPortal() {
-	    return "portal";
-	}
-	
 	@GetMapping("/pessoaCadastrar")
 	public String getCrudPessoa(Model model) {
 		model.addAttribute("pessoa", new Pessoa());
