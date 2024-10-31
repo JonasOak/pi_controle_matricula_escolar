@@ -13,21 +13,30 @@
 <body>
 <main class="acesso-externo">
 <section class="acesso-externo-form">
-  <form th:action="@{/login}" class="formulario-login" method="post"> 
+  <form th:action="@{/login}" th:object="${usuario}" class="formulario-login" method="post"> 
+		<div class="alert alert-danger" role="alert" th:if="${msgFaltaLogin}">
+			<strong th:text="${msgFaltaLogin}"></strong>
+		</div>
+		<div class="alert alert-danger" role="alert" th:if="${msgLoginErrado}">
+		    <strong th:text="${msgLoginErrado}"></strong>
+		</div>
   		<div class="externo-logo">
           <img class="externo-logo-img" src="../static/imagens/sollaresLogo.png" alt="logo">
         </div>
         <div class="externo-form-campos">
        		 <label for="usuario" class="label-usuario">Usuário:</label>
-             <input name="usuario" type="text" id="usuario" class="input-login" autofocus required>
+             <input th:field="*{login}" name="usuario" type="text" id="usuario" class="input-login" autofocus>
         </div>
         <div class="externo-form-campos">
              <label for="senha" class="label-usuario">Senha:</label>
-             <input name="senha" type="password" id="senha" class="input-login" required>
+             <input th:field="*{senha}" name="senha" type="password" id="senha" class="input-login">
         </div>
             <div class="externo-form-botao">
                 <input class="input-botao" type="submit" value="Entrar">
             </div>
+			<div class="externo-form-botao">
+				<a th:href="@{/registrar}"class="btn btn-primary">Registrar novo</a>
+			</div>
         </form>
 </section>
 </main>
