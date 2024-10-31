@@ -54,7 +54,9 @@ public class TestConfig implements CommandLineRunner {
 		Matricula m4 = new Matricula(0, d3, p2, sdf.parse("14-10-2024"), new BigDecimal("300"), "2° período");
 		matriculaRepository.saveAll(Arrays.asList(m1, m2, m3, m4));
 		
-		Usuario u1 = new Usuario(0, "Jonas", "Aluno", "jonasOak", "123456", "emaildejonas@gmail.com");
-		usuarioRepository.saveAll(Arrays.asList(u1));
+		Usuario u1 = new Usuario(0, "Jonas", "Administrador", "jonasOak", "123456", "emaildejonas@gmail.com");
+		Usuario u2 = new Usuario(0, "SouUmAluno", "Aluno", "alunoTeste", "123456", "emaildealuno@gmail.com");
+		Usuario u3 = new Usuario(0, "SouUmProfessor", "Professor", "professorTeste", "123456", "emaildeprofessor@gmail.com");
+		usuarioRepository.saveAll(Arrays.asList(u1, u2, u3));
 	}
 }
