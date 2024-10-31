@@ -29,6 +29,7 @@ public class MatriculaResources {
 	@Autowired
 	private MatriculaRepository matriculaRepository;
 	
+	/*
 	@GetMapping("/manterMatricula")
 	public String getCrudMatricula(Model model) {
 		model.addAttribute("matricula", new Matricula());
