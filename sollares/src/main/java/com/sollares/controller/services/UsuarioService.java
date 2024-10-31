@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.sollares.exception.ExcecaoServico;
 import com.sollares.model.entities.Usuario;
 import com.sollares.model.repositories.UsuarioRepository;
 
@@ -45,4 +46,8 @@ public class UsuarioService {
 		entity.setSenha(obj.getSenha());
 		entity.setEmail(obj.getEmail());
 	}
+	
+    public Usuario loginUser(String login, String senha) throws ExcecaoServico {
+        return repository.buscarLogin(login, senha);
+    }
 }
