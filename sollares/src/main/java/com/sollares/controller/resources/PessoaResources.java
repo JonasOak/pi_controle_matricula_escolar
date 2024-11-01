@@ -9,15 +9,19 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.sollares.controller.services.PessoaService;
 import com.sollares.model.entities.Pessoa;
+import com.sollares.model.entities.Usuario;
 import com.sollares.model.repositories.PessoaRepository;
 
+import jakarta.servlet.http.HttpSession;
+
 @Controller
+@SessionAttributes("usuarioLogado")
 public class PessoaResources {
 
 	@Autowired
@@ -25,6 +29,11 @@ public class PessoaResources {
 	
 	@Autowired
     private PessoaRepository pessoaRepository;
+	
+    @ModelAttribute("usuarioLogado")
+    public Usuario getUsuarioLogado(HttpSession session) {
+        return (Usuario) session.getAttribute("usuarioLogado");
+    }
 	
 	@GetMapping("/pessoaCadastrar")
 	public String getCrudPessoa(Model model) {
