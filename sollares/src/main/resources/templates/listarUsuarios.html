@@ -20,7 +20,7 @@
 				<ul class="navbar-nav">
 					<li class="nav-item" th:if="${usuarioLogado.cargo == 'Administrador'}">
 						<a class="nav-opcao nav-link" aria-current="page" href="listarUsuarios.html"
-							th:href="@{/usuario}">Usuário</a>
+							th:href="@{/usuarios}">Usuário</a>
 					</li>
 					<li class="nav-opcao nav-item dropdown" th:if="${usuarioLogado.cargo == 'Administrador'}">
 						<a class="nav-opcao nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"
@@ -76,22 +76,22 @@
     <div class="row justify-content-center align-items-center">
         <div class="col-md-7 d-flex align-items-start">
             <div class="card p-2 flex-grow-1 text-center">
-                <form class="form-group mb-0 d-flex align-items-center" th:action="@{/}" method="get">
+                <form class="form-group mb-0 d-flex align-items-center" th:action="@{/usuario/buscar}">
                     <label for="userId" class="me-3">Usuário</label>
                     <input type="text" class="form-control" id="nomePessoa" name="nome" placeholder="Digite o nome">
                     <div class="d-grid gap-2 d-md-flex justify-content-md-end botao-extras">
                         <button type="submit" class="btn btn-primary">Consultar</button>
-                        <button type="button" class="btn btn-primary" th:onclick="'location.href=\'' + @{/} + '\''">Cadastrar</button>
+                        <button type="button" class="btn btn-primary" th:onclick="'location.href=\'' + @{/usuarioCadastrar} + '\''">Cadastrar</button>
                     </div>
                 </form>
             </div>
             <div class="mensagens-container ms-5 d-flex flex-column align-items-start">
-                <p th:if="${}" class="alert alert-danger mensagem" th:text="${}"></p>
-                <p th:if="${}" class="alert alert-danger mensagem" th:text="${}"></p>
-                <p th:if="${}" class="alert alert-primary mensagem" th:text="${}"></p>
-                <p th:if="${}" class="alert alert-primary mensagem" th:text="${}"></p>
-                <p th:if="${}" class="alert alert-primary mensagem" th:text="${}"></p>
-                <p th:if="${a}" class="alert alert-primary mensagem" th:text="${}"></p>
+                <p th:if="${ErroDeletar}" class="alert alert-danger mensagem" th:text="${ErroDeletar}"></p>
+                <p th:if="${ErroInserir}" class="alert alert-danger mensagem" th:text="${ErroInserir}"></p>
+                <p th:if="${UsuarioDeletado}" class="alert alert-primary mensagem" th:text="${UsuarioDeletado}"></p>
+                <p th:if="${UsuarioInserido}" class="alert alert-primary mensagem" th:text="${UsuarioInserido}"></p>
+                <p th:if="${UsuarioAtualizado}" class="alert alert-primary mensagem" th:text="${UsuarioAtualizado}"></p>
+                <p th:if="${UsuarioCadastrado}" class="alert alert-primary mensagem" th:text="${UsuarioCadastrado}"></p>
             </div>
         </div>
     </div>
@@ -109,12 +109,12 @@
                 </tr>
             </thead>
             <tbody>
-                <tr th:each="usuario : ${}">
-                    <td th:text="${usuarios.idUsuario}"></td>
-                    <td th:text="${usuarios.nome}"></td>
-                    <td th:text="${usuarios.cargo}"></td>
-                    <td th:text="${usuarios.email}"></td>
-                    <td th:text="${usuarios.login}"></td>
+                <tr th:each="usuario : ${listaUsuarios}">
+                    <td th:text="${usuario.idUsuario}"></td>
+                    <td th:text="${usuario.nome}"></td>
+                    <td th:text="${usuario.cargo}"></td>
+                    <td th:text="${usuario.email}"></td>
+                    <td th:text="${usuario.login}"></td>
                     <td><select onchange="if(this.value) location = this.value;">
                 <option value="">Selecione...</option>
                 <option th:value="@{/usuarioAtualizar/{id}(id=${usuario.idUsuario})}">Atualizar</option>
