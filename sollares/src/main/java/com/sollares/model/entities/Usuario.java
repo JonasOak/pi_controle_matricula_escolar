@@ -34,6 +34,10 @@ public class Usuario implements Serializable {
 		this.senha = senha;
 		this.email = email;
 	}
+	
+	public void setIdUsuario(int idUsuario) {
+		this.idUsuario = idUsuario;
+	}
 
 	public int getIdUsuario() {
 		return idUsuario;
