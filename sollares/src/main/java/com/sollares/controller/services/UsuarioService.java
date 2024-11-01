@@ -22,7 +22,18 @@ public class UsuarioService {
 	
 	public Usuario buscarPorId(Integer id) {
 		Optional<Usuario> obj = repository.findById(id);
-		return obj.get();
+		Usuario usuario = null;
+		if (obj.isPresent()) {
+			usuario = obj.get();
+		}
+		else {
+			throw new RuntimeException("Pessoa não encontrada");
+		}
+		return usuario;
+	}
+	
+	public List<Usuario> buscarPorNome(String nome) {
+	    return repository.buscarNomes(nome);
 	}
 	
 	public Usuario inserir(Usuario obj) {
@@ -33,12 +44,12 @@ public class UsuarioService {
 		repository.deleteById(id);
 	}
 	
-	public Usuario atualizar(Integer id, Usuario obj) {
-		Usuario entity = repository.getReferenceById(id);
-		atualizarDados(entity, obj);
-		return repository.save(entity);
+	
+	public void atualizar(Usuario obj) {
+		repository.save(obj);
 	}
 
+	@SuppressWarnings("unused")
 	private void atualizarDados(Usuario entity, Usuario obj) {
 		entity.setNome(obj.getNome());
 		entity.setCargo(obj.getCargo());
