@@ -9,58 +9,43 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../static/css/login.css" th:href="@{/css/login.css}">
-   <style>
-    .acesso-externo-form {
-      overflow-y: auto; 
-      padding-top: 50px;
-      padding-bottom: 10px; 
-    }
-
-    .externo-form-campos {
-      margin-bottom: 10px; 
-    }
-
-    .input-login {
-      height: 38px;
-      font-size: 14px; 
-    }
-  </style>
 </head>
 <body>
   <main class="acesso-externo d-flex">
-    <section class="acesso-externo-form" style="width: 40%;">
+    <section class="acesso-externo-form-registra" style="width: 40%;">
       <div class="form-content">
         <form th:action="@{/salvarUsuario}" th:object="${usuario}" class="formulario-login" method="post"> 
           <div class="externo-logo">
-            <img class="externo-logo-img" src="../static/imagens/sollaresLogo.png" th:src="@{/imagens/sollaresLogo.png}" alt="logo">
+            <img class="externo-logo-img-registar" src="../static/imagens/sollaresLogo.png" th:src="@{/imagens/sollaresLogo.png}" alt="logo">
           </div>
-          <div class="externo-form-campos">
+          <div class="externo-form-campos-registrar">
              <label class="label-usuario">Nome:</label>
-             <input class="input-login" th:field="*{nome}" autofocus required>
+             <input class="input-login-registrar" th:field="*{nome}" autofocus required>
           </div>
-          <div class="externo-form-campos">
+          <div class="externo-form-campos-registrar">
              <label class="label-usuario">E-mail:</label>
-             <input class="input-login" th:field="*{email}" autofocus required>
+             <input class="input-login-registrar" th:field="*{email}" autofocus required>
           </div>
-          <div class="externo-form-campos">
+          <div class=externo-form-campos-registrar>
             <label class="label-usuario">Cargo:</label>
-            <select class="input-login" th:field="*{cargo}">
+            <select class="input-login-registrar" th:field="*{cargo}">
+              <option value="">Selecione</option>
               <option th:value="Aluno">Aluno</option>
               <option th:value="Professor">Professor</option>
             </select>
           </div>
-          <div class="externo-form-campos">
+          <div class="externo-form-campos-registrar">
              <label class="label-usuario">Login:</label>
-             <input class="input-login" th:field="*{login}" autofocus required>
+             <input class="input-login-registrar" th:field="*{login}" autofocus required>
           </div>
           <div class="externo-form-campos">
              <label class="label-usuario">Senha:</label>
-             <input class="input-login" type="password" th:field="*{senha}" autofocus required>
+             <input class="input-login-registrar" type="password" th:field="*{senha}" autofocus required>
           </div>
-          <div class="externo-form-botao">
+          <div class="externo-form-botao-registra">
             <input class="input-botao btn btn-primary" type="submit" value="Confirmar">
           </div>
-          <div class="externo-form-botao">
+          <div class="externo-form-botao-registra">
             <a class="input-botao btn btn-secondary btn-extra" href="/">Voltar</a>
           </div>
         </form>

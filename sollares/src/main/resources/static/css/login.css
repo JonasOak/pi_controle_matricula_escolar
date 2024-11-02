@@ -24,24 +24,28 @@ body {
     width: 50%;
     padding: 1rem;
     background-color: var(--color-campos);
-    border: 2px solid rgba(200, 200, 200, 0.7);
     border-radius: 10px;
     box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3);
     text-align: center;
 }
 
 .acesso-externo-form {
-   width: 40%;
+    width: 40%;
     display: flex;
     justify-content: center;
     align-items: center;
     box-sizing: border-box;
 }
 
+.externo-logo {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
 .externo-logo-img {
     width: 180px; 
-    height: auto; 
-    margin-bottom: 20px; 
+    height: auto;
 }
 
 .img-section {
@@ -54,6 +58,7 @@ body {
     height: 100%;
     object-fit: cover;
 }
+
 .externo-form-botao {
     display: flex;
     justify-content: center;
@@ -75,10 +80,9 @@ body {
 .input-login {
     font-size: 12px;
     width: 90%; 
-    height: 30px;
+    height: 40px;
     padding: 10px; 
     margin: 10px auto; 
-    box-sizing: border-box;
     display: block;
 }
 
@@ -86,9 +90,62 @@ body {
     border-radius: 6px;
     background-color: var(--cor-botao);
     font-family: var(--fonte);
+    color: black;
     font-size: 16px;
-    padding: 8px 16px;
+    padding: 8px 10px;
+}
+
+.input-botao:hover,
+.btn:hover {
+    background-color: var(--cor-botao); 
+    color: inherit; 
+    border: none; 
+}
+
+.btn-extra{
+	background-color: var(--cor-botao);
+    color: black;	
+}
+
+/* PAGINA REGISTRA*/
+
+.acesso-externo-form-registra {
+	display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    overflow-y: auto; 
+    padding-top: 50px;
+    padding-bottom: 15px; 
+    
+}
+
+.externo-logo-img-registar {
+	width: 180px; 
+    margin-left: 30px;
+    margin-bottom: 18px; 
+}
+
+.externo-form-campos-registrar {
+     margin-bottom: 10px; 
+     padding-bottom: 8px;  
 }
 
 
+.input-login-registrar {
+      height: 30px;
+      font-size: 14px; 
+      margin-top: 10px;
+      width: 60%; 
+}
+    
+.externo-form-botao-registra {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 15px;
+  margin-left: 25px;
+  color: black;
+  border-radius: 6px;
+}
 
