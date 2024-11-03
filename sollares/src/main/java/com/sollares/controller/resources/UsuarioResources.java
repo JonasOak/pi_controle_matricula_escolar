@@ -39,13 +39,30 @@ public class UsuarioResources {
         return mv;
     }
 
-    @GetMapping("/index")
-    public ModelAndView index(HttpSession session, Model model) {
+    @GetMapping("/index") // método que conversmos 
+    public ModelAndView index(HttpSession session, Model model, @RequestParam(value = "page", required = false) String page) {
         ModelAndView mv = new ModelAndView();
         Usuario usuarioLogado = (Usuario) session.getAttribute("usuarioLogado");
 
         if (usuarioLogado != null) {
-            mv.setViewName("portal");
+            if (page != null) {
+                switch (page) {
+                    case "portal":
+                        mv.setViewName("portal");
+                        break;
+                    case "outraPagina1":
+                        mv.setViewName("outraPagina1"); 
+                        break;
+                    case "outraPagina2":
+                        mv.setViewName("outraPagina2");
+                        break;
+                    default:
+                        mv.setViewName("portal");
+                        break;
+                }
+            } else {
+                mv.setViewName("portal"); 
+            }
         } else {
             mv.addObject("usuario", new Usuario());
             model.addAttribute("msgFaltaLogin", "Por favor, faça login para acessar o portal.");
@@ -54,6 +71,20 @@ public class UsuarioResources {
 
         return mv;
     }
+    
+    
+	/*
+	 * @GetMapping("/index") public ModelAndView index(HttpSession session, Model
+	 * model) { ModelAndView mv = new ModelAndView(); Usuario usuarioLogado =
+	 * (Usuario) session.getAttribute("usuarioLogado");
+	 * 
+	 * if (usuarioLogado != null) { mv.setViewName("portal"); } else {
+	 * mv.addObject("usuario", new Usuario()); model.addAttribute("msgFaltaLogin",
+	 * "Por favor, faça login para acessar o portal."); mv.setViewName("login"); }
+	 * 
+	 * return mv; }
+	 */
+
 
     @GetMapping("/registrar")
     public ModelAndView getCadastrarUsuario() {
