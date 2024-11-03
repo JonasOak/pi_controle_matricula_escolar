@@ -36,7 +36,7 @@
 					</li>
 					<li class="nav-item" th:if="${usuarioLogado.cargo == 'Administrador'}">
 						<a class="nav-opcao nav-link" href="listarDisciplinas.html"
-							th:href="@{/disciplinas">Disciplina</a>
+							th:href="@{/disciplinas}">Disciplina</a>
 					</li>
 					<li class="nav-opcao nav-item dropdown" th:if="${usuarioLogado != null}">
 						<a class="nav-opcao nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"
@@ -72,32 +72,33 @@
 		</div>
 	</nav>
 <main>
-<section>
-     <div class="container my-4">
-    <div class="row justify-content-center align-items-center">
-        <div class="col-md-7 d-flex align-items-start">
-            <div class="card p-2 flex-grow-1 text-center">
-                <form class="form-group mb-0 d-flex align-items-center" th:action="@{}" method="get">
-                    <label for="userId" class="me-3">Disciplina</label>
-                    <input type="text" class="form-control" id="nomePessoa" name="nome" placeholder="Digite o nome">
-                    <div class="d-grid gap-2 d-md-flex justify-content-md-end botao-extras">
-                        <button type="submit" class="btn btn-primary">Consultar</button>
-                        <button type="button" class="btn btn-primary" th:onclick="'location.href=\'' + @{/} + '\''">Cadastrar</button>
-                    </div>
-                </form>
-            </div>
-            <div class="mensagens-container ms-5 d-flex flex-column align-items-start">
-                <p th:if="${ErroDeletar}" class="alert alert-danger mensagem" th:text="${ErroDeletar}"></p>
-                <p th:if="${ErroInserir}" class="alert alert-danger mensagem" th:text="${ErroInserir}"></p>
-                <p th:if="${}" class="alert alert-primary mensagem" th:text="${}"></p>
-                <p th:if="${}" class="alert alert-primary mensagem" th:text="${}"></p>
-                <p th:if="${}" class="alert alert-primary mensagem" th:text="${}"></p>
-                <p th:if="${}" class="alert alert-primary mensagem" th:text="${}"></p>
+<section> 
+    <div class="container my-4">
+        <div class="row justify-content-center align-items-center">
+            <div class="col-md-7 d-flex align-items-start">
+                <div class="card p-2 flex-grow-1 text-center">
+                    <form class="form-group mb-0 d-flex align-items-center" th:action="@{/buscar}" method="GET">
+                        <label for="nome" class="me-3">Disciplina</label>
+                        <input type="text" class="form-control" id="nome" name="nome" placeholder="Digite o nome">
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end botao-extras">
+                            <button type="submit" class="btn btn-primary">Consultar</button>
+                            <button type="button" class="btn btn-primary" th:onclick="'location.href=\'' + @{/disciplinaCadastrar} + '\''">Cadastrar</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="mensagens-container ms-5 d-flex flex-column align-items-start">
+                    <p th:if="${ErroDeletar}" class="alert alert-danger mensagem" th:text="${ErroDeletar}"></p>
+                    <p th:if="${ErroInserir}" class="alert alert-danger mensagem" th:text="${ErroInserir}"></p>
+                    <p th:if="${DisciplinaCadastrada}" class="alert alert-success mensagem" th:text="${DisciplinaCadastrada}"></p>
+                    <p th:if="${DisciplinaAtualizada}" class="alert alert-success mensagem" th:text="${DisciplinaAtualizada}"></p>
+                    <p th:if="${DisciplinaDeletada}" class="alert alert-success mensagem" th:text="${DisciplinaDeletada}"></p>
+                    <p th:if="${ErroAtualizar}" class="alert alert-danger mensagem" th:text="${ErroAtualizar}"></p>
+                </div>
             </div>
         </div>
     </div>
-</div>
 </section>
+
   <section class="tabela-pessoas">    
         <table class="table table-striped">
             <thead>
@@ -106,18 +107,20 @@
                     <th>Nome</th>
                     <th>Carga horária</th>
                     <th>Limite de Alunos</th>
+                    <th>Professor</th>
                 </tr>
             </thead>
             <tbody>
-               <tr th:each="disciplinas : ${disciplina}">
-                    <td th:text="${disciplinas.codigo}"></td>
-                    <td th:text="${disciplinas.nomeDisciplina}"></td>
-                    <td th:text="${disciplinas.cargaHoraria}"></td>
-                    <td th:text="${disciplinas.limiteAlunos}"></td> 
+               <tr th:each="disciplina : ${disciplinas}">
+                    <td th:text="${disciplina.codigo}"></td>
+                    <td th:text="${disciplina.nomeDisciplina}"></td>
+                    <td th:text="${disciplina.cargaHoraria}"></td>
+                    <td th:text="${disciplina.limiteAlunos}"></td>
+                    <td th:text="${disciplina.professor.nomePessoa}"></td>
                     <td><select onchange="if(this.value) location = this.value;">
                		 <option value="">Selecione...</option>
-                	 <option th:value="@{/ /{id}(id=${ })}">Atualizar</option>
-               		 <option th:value="@{/ /{id}(id=${ })}">Excluir</option>
+                	 <option th:value="@{/disciplinaAtualizar/{codigo}(codigo=${disciplina.codigo})}">Atualizar</option>
+					 <option th:value="@{/disciplinaDeletar/{codigo}(codigo=${disciplina.codigo})}">Excluir</option>
                     </select>
                 	</tr>
             </tbody>
@@ -132,6 +135,5 @@
 </main> 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
-</body>
 </body>
 </html>

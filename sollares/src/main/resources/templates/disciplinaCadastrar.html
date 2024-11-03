@@ -36,7 +36,7 @@
 					</li>
 					<li class="nav-item" th:if="${usuarioLogado.cargo == 'Administrador'}">
 						<a class="nav-opcao nav-link" href="listarDisciplinas.html"
-							th:href="@{/disciplinaS}">Disciplina</a>
+							th:href="@{/disciplinas}">Disciplina</a>
 					</li>
 					<li class="nav-opcao nav-item dropdown" th:if="${usuarioLogado != null}">
 						<a class="nav-opcao nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"
@@ -74,7 +74,7 @@
  <main> 
  <section>
   <div class="formulario-pessoa">
-    <form class="row g-3" th:action="@{/disciplinas}" method="post" th:object="${disciplina}">
+    <form class="row g-3" th:action="@{/disciplina}" method="post" th:object="${disciplina}">
       <h1>Disciplina</h1>
       <div class="col-md-4">
         <label for="inputDisciplina4" class="form-label">Disciplina</label>
@@ -84,20 +84,25 @@
         <label for="inputCargaHoraria4" class="form-label">Carga Horária</label>
         <input type="text" class="form-control" id="inputCargaHoraria4" th:field="*{cargaHoraria}">
       </div>
-      <div class="col-md-6">
-        <label for="inputPessoaProfessor4" class="form-label">Professor</label>
-        <input type="text" class="form-control" id="inputPessoaProfessor4" th:field="*{professor}">
-      </div>
+      <div class="col-md-4">
+    	<label for="professor">Professor:</label>
+    	<select id="professor" name="professor" class="form-select" th:field="*{professor}">
+    	    <option value="" disabled selected>Selecione um Professor</option>
+       	    <option th:each="professor : ${listaProfessores}" 
+                th:value="${professor.idPessoa}" 
+                th:text="${professor.nomePessoa}"></option>
+    	</select>	
+	 </div>
       <div class="col-md-2">
         <label for="inputLimite" class="form-label">Limite de Alunos</label>
         <input type="text" class="form-control" id="inputLimite" th:field="*{limiteAlunos}">
       </div>
       <div class="col-md-2">
         <label for="inputID" class="form-label">ID</label>
-        <input disabled type="text" class="form-control" id="inputID" th:field="*{id}" readonly>
+        <input disabled type="text" class="form-control" id="inputID" th:field="*{codigo}" readonly>
       </div>
        <div class="botao-formulario">
-    <button type="submit" formmethod="post" formaction="/disciplinas" class="btn btn-primary">Cadastrar</button>
+    <button type="submit" class="btn btn-primary">Cadastrar</button>
     <button type="button" class="btn btn-primary" th:onclick="'location.href=\'' + @{/disciplinas} + '\''">Voltar</button>
   </div>
     </form>
