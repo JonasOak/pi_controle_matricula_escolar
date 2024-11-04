@@ -1,9 +1,12 @@
 package com.sollares.controller.services;
 
 import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.sollares.model.entities.Disciplina;
+import com.sollares.model.entities.Pessoa;
 import com.sollares.model.repositories.DisciplinaRepository;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
@@ -31,7 +34,15 @@ public class DisciplinaService {
     }
 	
 	public Disciplina buscarPorId(Integer codigo) {
-	    return repository.findById(codigo).orElseThrow(() -> new EntityNotFoundException("Disciplina não encontrada."));
+		Optional<Disciplina> obj = repository.findById(codigo);
+		Disciplina disciplina = null;
+		if (obj.isPresent()) {
+			disciplina = obj.get();
+		}
+		else {
+			throw new RuntimeException("Disciplina não encontrada");
+		}
+		return disciplina;
 	}
 
 	

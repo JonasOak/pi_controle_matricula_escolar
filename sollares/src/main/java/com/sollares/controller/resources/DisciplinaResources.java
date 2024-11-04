@@ -10,24 +10,27 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import com.sollares.model.entities.Usuario;
-import com.sollares.model.repositories.PessoaRepository;
+
 import com.sollares.controller.services.DisciplinaService;
 import com.sollares.model.entities.Disciplina;
 import com.sollares.model.entities.Pessoa;
+import com.sollares.model.entities.Usuario;
+import com.sollares.model.repositories.DisciplinaRepository;
 
 import jakarta.servlet.http.HttpSession;
 
 
 @Controller
+@SessionAttributes("usuarioLogado")
 public class DisciplinaResources {
 
 	@Autowired
 	private DisciplinaService servico;
 	
 	@Autowired
-    private PessoaRepository pessoaRepository;
+    private DisciplinaRepository disciplinaRepository;
 	
 	
 	@ModelAttribute("usuarioLogado")
@@ -53,7 +56,7 @@ public class DisciplinaResources {
     @GetMapping("/disciplinaCadastrar")
     public String cadastrarDisciplina(Model model) {
         model.addAttribute("disciplina", new Disciplina());
-        List<Pessoa> listaProfessores = pessoaRepository.findDistinctProfessores();
+        List<Pessoa> listaProfessores = disciplinaRepository.buscarPessoas();
         model.addAttribute("listaProfessores", listaProfessores);
         return "disciplinaCadastrar";
     }
@@ -75,7 +78,9 @@ public class DisciplinaResources {
 	 @GetMapping("/disciplinaAtualizar/{codigo}")
 	 public String mostrarAtualizarDisciplina(@PathVariable("codigo") int codigo, Model model) {
 	     Disciplina disciplina = servico.buscarPorId(codigo);
+	     List<Pessoa> listaProfessores = disciplinaRepository.buscarPessoas();
 	     model.addAttribute("disciplina", disciplina);
+	     model.addAttribute("listaProfessores", listaProfessores);
 	     return "disciplinaAtualizar";
 	 }
 
@@ -99,41 +104,15 @@ public class DisciplinaResources {
 	 }
 
 
-	 @PostMapping("/confirmarDeletarDisciplina/{codigo}")
+	 @GetMapping("/confirmarDeletarDisciplina/{codigo}")
 	 public String deletar(@PathVariable("codigo") int codigo, RedirectAttributes redirectAttributes) {
 	     try {
 	         servico.deletar(codigo);
 	         redirectAttributes.addFlashAttribute("DisciplinaDeletada", "Disciplina deletada com sucesso.");
 	     } catch (Exception e) {
-	         redirectAttributes.addFlashAttribute("ErroDeletar", "Erro ao deletar disciplina.");
+	    	 System.out.println("Erro ao deletar disciplina: " + e.getMessage());
+	         redirectAttributes.addFlashAttribute("ErroDeletar", "Não é possível deletar essa disciplina pois há um ou mais alunos matriculados nela.");
 	     }
 	     return "redirect:/disciplinas";
 	 }
-
-
-	
-	/*
-	 * @GetMapping public ResponseEntity<List<Disciplina>> buscarTodos() {
-	 * List<Disciplina> list = servico.buscarTodos(); return
-	 * ResponseEntity.ok().body(list); }
-	 * 
-	 * @GetMapping(value = "/{id}") public ResponseEntity<Disciplina>
-	 * buscarPorId(@PathVariable Integer id) { Disciplina obj =
-	 * servico.buscarPorId(id); return ResponseEntity.ok().body(obj); }
-	 */
-	  
-	/*
-	 * @PostMapping public ResponseEntity<Disciplina> inserir(@RequestBody
-	 * Disciplina obj) { obj = servico.inserir(obj); URI uri =
-	 * ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand
-	 * (obj.getCodigo()).toUri(); return ResponseEntity.created(uri).body(obj); }
-	 * 
-	 * @DeleteMapping(value = "/{id}") public ResponseEntity<Void>
-	 * deletar(@PathVariable Integer id) { servico.deletar(id); return
-	 * ResponseEntity.noContent().build(); }
-	 * 
-	 * @PutMapping(value = "/{id}") public ResponseEntity<Disciplina>
-	 * atualizar(@PathVariable Integer id, @RequestBody Disciplina obj) { obj =
-	 * servico.atualizar(id, obj); return ResponseEntity.ok().body(obj); }
-	 */
 }

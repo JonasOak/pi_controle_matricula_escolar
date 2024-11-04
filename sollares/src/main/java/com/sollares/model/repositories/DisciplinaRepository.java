@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import com.sollares.model.entities.Disciplina;
+import com.sollares.model.entities.Pessoa;
 
 public interface DisciplinaRepository extends JpaRepository<Disciplina, Integer> {
 
@@ -15,5 +16,9 @@ public interface DisciplinaRepository extends JpaRepository<Disciplina, Integer>
     
     @Query("SELECT d FROM Disciplina d JOIN FETCH d.professor")
     List<Disciplina> buscarDisciplinasComProfessores();
+    
+    @Query("SELECT p FROM Pessoa p")
+    List<Pessoa> buscarPessoas(); // Layla, este método é para listar todas as Pessoas para deixar como Professor
+                                  // sendo chave estrangeira da tabela Pessoa
 
 }
