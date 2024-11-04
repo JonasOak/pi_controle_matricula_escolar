@@ -40,7 +40,12 @@ public class DisciplinaResources {
 	
 	
 	@GetMapping("/disciplinas")
-    public String listarTodos(Model model) {
+    public String listarTodos(HttpSession session, Model model) {
+	    Usuario usuarioLogado = (Usuario) session.getAttribute("usuarioLogado");
+	    if (usuarioLogado == null) {
+	        model.addAttribute("msgFaltaLogin", "Por favor, faça login para acessar o portal.");
+	        return "redirect:/index";
+	    }
         List<Disciplina> listaDisciplinas = servico.buscarDisciplinasComProfessores();
         model.addAttribute("disciplinas", listaDisciplinas);
         return "listarDisciplinas"; 
@@ -54,7 +59,12 @@ public class DisciplinaResources {
     }
 
     @GetMapping("/disciplinaCadastrar")
-    public String cadastrarDisciplina(Model model) {
+    public String cadastrarDisciplina(HttpSession session, Model model) {
+	    Usuario usuarioLogado = (Usuario) session.getAttribute("usuarioLogado");
+	    if (usuarioLogado == null) {
+	        model.addAttribute("msgFaltaLogin", "Por favor, faça login para acessar o portal.");
+	        return "redirect:/index";
+	    }
         model.addAttribute("disciplina", new Disciplina());
         List<Pessoa> listaProfessores = disciplinaRepository.buscarPessoas();
         model.addAttribute("listaProfessores", listaProfessores);

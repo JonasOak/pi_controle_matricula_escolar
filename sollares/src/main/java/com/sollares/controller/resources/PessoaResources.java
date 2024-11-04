@@ -36,13 +36,23 @@ public class PessoaResources {
     }
 	
 	@GetMapping("/pessoaCadastrar")
-	public String getCrudPessoa(Model model) {
+	public String getCrudPessoa(HttpSession session, Model model) {
+	    Usuario usuarioLogado = (Usuario) session.getAttribute("usuarioLogado");
+	    if (usuarioLogado == null) {
+	        model.addAttribute("msgFaltaLogin", "Por favor, faça login para acessar o portal.");
+	        return "redirect:/index";
+	    }
 		model.addAttribute("pessoa", new Pessoa());
 		return "pessoaCadastrar";
 	}
 	
 	@GetMapping("/pessoas")
-	public String getVisualizarPessoas(Model model) {
+	public String getVisualizarPessoas(HttpSession session, Model model) {
+	    Usuario usuarioLogado = (Usuario) session.getAttribute("usuarioLogado");
+	    if (usuarioLogado == null) {
+	        model.addAttribute("msgFaltaLogin", "Por favor, faça login para acessar o portal.");
+	        return "redirect:/index";
+	    }
 		List<Pessoa> listaPessoas = servico.buscarTodos();
 		model.addAttribute("listaPessoas", listaPessoas);
 		model.addAttribute("pessoa", new Pessoa());
@@ -50,14 +60,24 @@ public class PessoaResources {
 	}
 	
 	@GetMapping("/professores")
-	public String getVisualizarProfessores(Model model) {
+	public String getVisualizarProfessores(HttpSession session, Model model) {
+	    Usuario usuarioLogado = (Usuario) session.getAttribute("usuarioLogado");
+	    if (usuarioLogado == null) {
+	        model.addAttribute("msgFaltaLogin", "Por favor, faça login para acessar o portal.");
+	        return "redirect:/index";
+	    }
 		List<Pessoa> listaProfessores = pessoaRepository.findDistinctProfessores();
 		model.addAttribute("listaProfessores", listaProfessores);
 		return "listarProfessores";
 	}
 		
 	@GetMapping("/alunos")
-	public String getVisualizarAlunos(Model model) {
+	public String getVisualizarAlunos(HttpSession session, Model model) {
+	    Usuario usuarioLogado = (Usuario) session.getAttribute("usuarioLogado");
+	    if (usuarioLogado == null) {
+	        model.addAttribute("msgFaltaLogin", "Por favor, faça login para acessar o portal.");
+	        return "redirect:/index";
+	    }
 		List<Pessoa> listaAlunos = pessoaRepository.findDistinctAlunos();
 		model.addAttribute("listaAlunos", listaAlunos);
 		return "listarAlunos";

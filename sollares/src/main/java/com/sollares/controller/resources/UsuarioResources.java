@@ -10,13 +10,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.sollares.controller.services.UsuarioService;
 import com.sollares.exception.ExcecaoServico;
-import com.sollares.model.entities.Pessoa;
 import com.sollares.model.entities.Usuario;
 import com.sollares.model.repositories.UsuarioRepository;
 
@@ -38,52 +36,22 @@ public class UsuarioResources {
         mv.addObject("usuario", new Usuario());
         return mv;
     }
-
-    @GetMapping("/index") // método que conversmos 
-    public ModelAndView index(HttpSession session, Model model, @RequestParam(value = "page", required = false) String page) {
-        ModelAndView mv = new ModelAndView();
-        Usuario usuarioLogado = (Usuario) session.getAttribute("usuarioLogado");
-
-        if (usuarioLogado != null) {
-            if (page != null) {
-                switch (page) {
-                    case "portal":
-                        mv.setViewName("portal");
-                        break;
-                    case "outraPagina1":
-                        mv.setViewName("outraPagina1"); 
-                        break;
-                    case "outraPagina2":
-                        mv.setViewName("outraPagina2");
-                        break;
-                    default:
-                        mv.setViewName("portal");
-                        break;
-                }
-            } else {
-                mv.setViewName("portal"); 
-            }
-        } else {
-            mv.addObject("usuario", new Usuario());
-            model.addAttribute("msgFaltaLogin", "Por favor, faça login para acessar o portal.");
-            mv.setViewName("login");
-        }
-
-        return mv;
-    }
-    
-    
-	/*
-	 * @GetMapping("/index") public ModelAndView index(HttpSession session, Model
-	 * model) { ModelAndView mv = new ModelAndView(); Usuario usuarioLogado =
-	 * (Usuario) session.getAttribute("usuarioLogado");
-	 * 
-	 * if (usuarioLogado != null) { mv.setViewName("portal"); } else {
-	 * mv.addObject("usuario", new Usuario()); model.addAttribute("msgFaltaLogin",
-	 * "Por favor, faça login para acessar o portal."); mv.setViewName("login"); }
-	 * 
-	 * return mv; }
-	 */
+	
+	@GetMapping("/index") 
+	public ModelAndView index(HttpSession session, Model model) { 
+		ModelAndView mv = new ModelAndView(); 
+		Usuario usuarioLogado = (Usuario) session.getAttribute("usuarioLogado");
+	  
+		 if (usuarioLogado != null) { 
+			 mv.setViewName("portal"); 
+		 } 
+		 else {
+			 mv.addObject("usuario", new Usuario()); 
+			 model.addAttribute("msgFaltaLogin","Por favor, faça login para acessar o portal."); 
+			 mv.setViewName("login");
+		 }
+		 return mv; 
+	 }
 
 
     @GetMapping("/registrar")
@@ -146,7 +114,12 @@ public class UsuarioResources {
 	}
 	
 	@GetMapping("/usuarios")
-	public String getVisualizarUsuarios(Model model) {
+	public String getVisualizarUsuarios(HttpSession session, Model model) {
+	    Usuario usuarioLogado = (Usuario) session.getAttribute("usuarioLogado");
+	    if (usuarioLogado == null) {
+	        model.addAttribute("msgFaltaLogin", "Por favor, faça login para acessar o portal.");
+	        return "redirect:/index";
+	    }
 		List<Usuario> listaUsuarios = servico.buscarTodos();
 		model.addAttribute("listaUsuarios", listaUsuarios);
 		model.addAttribute("usuario", new Usuario());
