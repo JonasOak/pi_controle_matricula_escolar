@@ -97,10 +97,6 @@
         <label for="inputLimite" class="form-label">Limite de Alunos</label>
         <input type="text" class="form-control" id="inputLimite" th:field="*{limiteAlunos}">
       </div>
-      <div class="col-md-2">
-        <label for="inputID" class="form-label">ID</label>
-        <input disabled type="text" class="form-control" id="inputID" th:field="*{codigo}" readonly>
-      </div>
        <div class="botao-formulario">
     <button type="submit" class="btn btn-primary">Cadastrar</button>
     <button type="button" class="btn btn-primary" th:onclick="'location.href=\'' + @{/disciplinas} + '\''">Voltar</button>
