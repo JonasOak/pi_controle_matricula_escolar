@@ -48,13 +48,12 @@ public class TestConfig implements CommandLineRunner {
 		Disciplina d3 = new Disciplina(0, "Inglês", 60, p2, 3);
 		disciplinaRepository.saveAll(Arrays.asList(d1, d2, d3));
 		
-		Matricula m1 = new Matricula(0, d1, p3, sdf.parse("14-10-2024"), new BigDecimal("600"), "1° período");
+		Matricula m1 = new Matricula(0, d2, p3, sdf.parse("14-10-2024"), new BigDecimal("600"), "1° período");
 		Matricula m2 = new Matricula(0, d3, p2, sdf.parse("14-10-2024"), new BigDecimal("300"), "2° período");
 		Matricula m3 = new Matricula(0, d3, p3, sdf.parse("14-10-2024"), new BigDecimal("600"), "1° período");
-		Matricula m4 = new Matricula(0, d3, p2, sdf.parse("14-10-2024"), new BigDecimal("300"), "2° período");
-		matriculaRepository.saveAll(Arrays.asList(m1, m2, m3, m4));
+		matriculaRepository.saveAll(Arrays.asList(m1, m2, m3));
 		
-		Usuario u1 = new Usuario(0, "Jonas", "Administrador", "jonasOak", "123456", "emaildejonas@gmail.com");
+		Usuario u1 = new Usuario(0, "Ademiro", "Administrador", "admin", "admin", "emaildoademiro@gmail.com");
 		Usuario u2 = new Usuario(0, "SouUmAluno", "Aluno", "alunoTeste", "123456", "emaildealuno@gmail.com");
 		Usuario u3 = new Usuario(0, "SouUmProfessor", "Professor", "professorTeste", "123456", "emaildeprofessor@gmail.com");
 		usuarioRepository.saveAll(Arrays.asList(u1, u2, u3));
