@@ -38,7 +38,6 @@ public class DisciplinaResources {
         return (Usuario) session.getAttribute("usuarioLogado");
     }
 	
-	
 	@GetMapping("/disciplinas")
     public String listarTodos(HttpSession session, Model model) {
 	    Usuario usuarioLogado = (Usuario) session.getAttribute("usuarioLogado");
