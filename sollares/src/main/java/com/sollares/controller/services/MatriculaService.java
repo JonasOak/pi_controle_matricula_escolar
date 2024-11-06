@@ -10,7 +10,9 @@ import com.sollares.exception.LimiteException;
 import com.sollares.model.entities.Disciplina;
 import com.sollares.model.entities.Matricula;
 import com.sollares.model.entities.Pessoa;
+import com.sollares.model.repositories.DisciplinaRepository;
 import com.sollares.model.repositories.MatriculaRepository;
+import com.sollares.model.repositories.PessoaRepository;
 
 import jakarta.transaction.Transactional;
 
@@ -20,11 +22,17 @@ public class MatriculaService {
 	@Autowired
 	private MatriculaRepository repository;
 	
+	@Autowired
+	private DisciplinaRepository disciplinaRepository;
+	
+	@Autowired
+	private PessoaRepository pessoaRepository;
+	
 	public List<Matricula> buscarTodos() {
 		return repository.findAll();
 	}
 	
-	public List<Pessoa> buscarPorNome(String nome) {
+	public List<Matricula> buscarPorNome(String nome) {
         return repository.buscarNomes(nome);
     }
 	
@@ -56,12 +64,27 @@ public class MatriculaService {
 	}
 	
 	public Matricula inserir(Matricula obj) {
-		List<Matricula> matriculas = repository.findByDisciplina(obj.getDisciplina());
+	    // Busque a disciplina no banco para garantir que ela já está gerenciada pelo Hibernate
+	    Disciplina disciplina = disciplinaRepository.findById(obj.getDisciplina().getCodigo())
+	            .orElseThrow(() -> new IllegalArgumentException("Disciplina não encontrada"));
+
+	    // Busque o aluno no banco para garantir que ele já está gerenciado pelo Hibernate
+	    Pessoa aluno = pessoaRepository.findById(obj.getAluno().getIdPessoa())
+	            .orElseThrow(() -> new IllegalArgumentException("Aluno não encontrado"));
+
+	    // Associe as entidades persistentes à matrícula
+	    obj.setDisciplina(disciplina);
+	    obj.setAluno(aluno);
+
+	    // Lógica de limite de alunos para a disciplina
+	    List<Matricula> matriculas = repository.findByDisciplina(obj.getDisciplina());
 	    int limiteAlunos = obj.getDisciplina().getLimiteAlunos();
-	    
+
 	    if (matriculas.size() >= limiteAlunos) {
 	        throw new LimiteException("O limite de alunos para esta disciplina já foi atingido.");
 	    }
+
+	    // Salve a matrícula com as associações corretas
 	    return repository.save(obj);
 	}
 	

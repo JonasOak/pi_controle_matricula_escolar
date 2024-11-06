@@ -10,6 +10,8 @@ import com.sollares.model.entities.Disciplina;
 import com.sollares.model.entities.Pessoa;
 
 public interface DisciplinaRepository extends JpaRepository<Disciplina, Integer> {
+	
+	List<Disciplina> findAll();
 
 	@Query("SELECT d FROM Disciplina d WHERE LOWER(d.nomeDisciplina) LIKE LOWER(CONCAT('%', :nome, '%'))")
 	List<Disciplina> buscarNomes(@Param("nome") String nome);

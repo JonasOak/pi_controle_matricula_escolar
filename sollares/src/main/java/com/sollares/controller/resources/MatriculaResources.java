@@ -8,10 +8,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.sollares.controller.services.DisciplinaService;
 import com.sollares.controller.services.MatriculaService;
+import com.sollares.controller.services.PessoaService;
 import com.sollares.model.entities.Disciplina;
 import com.sollares.model.entities.Matricula;
 import com.sollares.model.entities.Pessoa;
@@ -31,6 +35,9 @@ public class MatriculaResources {
 	private DisciplinaService servicoDisciplina;
 	
 	@Autowired
+	private PessoaService servicoPessoa;
+	
+	@Autowired
 	private MatriculaRepository matriculaRepository;
 	
 	@ModelAttribute("usuarioLogado")
@@ -48,26 +55,46 @@ public class MatriculaResources {
         List<Matricula> listaAlunos = servico.buscarMatriculaComAlunos();
         List<Matricula> listaDisciplinas = servico.buscarDisciplinasComProfessores();
         model.addAttribute("listaAlunos", listaAlunos);
-        model.addAttribute("listaDisciplinas", listaDisciplinas);
+        model.addAttribute("listaMatriculas", listaDisciplinas);
         return "listarMatriculas"; 
     }
 	
+    @GetMapping("/matricula/buscar")
+    public String buscarMatriculasPorNome(@RequestParam(value = "nome", required = false) String nome, Model model) {
+        List<Matricula> matricula = servico.buscarPorNome(nome);
+        model.addAttribute("listaMatriculas", matricula); 
+        return "listarMatriculas";
+    }
+    
+    @GetMapping("/matriculaCadastrar")
+    public String cadastrarMatricula(HttpSession session, Model model) {
+        Usuario usuarioLogado = (Usuario) session.getAttribute("usuarioLogado");
+        if (usuarioLogado == null) {
+            model.addAttribute("msgFaltaLogin", "Por favor, faça login para acessar o portal.");
+            return "redirect:/index";
+        }
+        model.addAttribute("matricula", new Matricula());
+        List<Disciplina> listaDisciplinas = servicoDisciplina.buscarTodos();
+        model.addAttribute("listaDisciplinas", listaDisciplinas);
+        List<Pessoa> listaPessoas = matriculaRepository.buscarPessoas();
+        model.addAttribute("listaPessoas", listaPessoas);
+        
+        return "matriculaCadastrar";
+    }
+    
+    @PostMapping("/matricula")
+    public String inserir(@ModelAttribute("matricula") Matricula matricula, RedirectAttributes redirectAttributes, Model model) {
+        try {
+            servico.inserir(matricula);
+            redirectAttributes.addFlashAttribute("successMessage", "Matrícula cadastrada com sucesso.");
+            return "redirect:/matriculas"; // Redireciona para a página de listagem de matrículas.
+        } catch (Exception e) {
+            model.addAttribute("errorMessage", "Erro ao cadastrar matrícula: " + e.getMessage());
+            return "teste"; // Retorna à página do formulário em caso de erro.
+        }
+    }
 	
 	/*
-	@GetMapping("/manterMatricula")
-	public String getCrudMatricula(Model model) {
-		model.addAttribute("matricula", new Matricula());
-		return "matricula";
-	}
-	*/
-	/*
-	@GetMapping("/matriculas")
-	public String getVisualizarMatriculas(Model model) {
-		List<Matricula> listaMatriculas= servico.buscarTodos();
-		model.addAttribute("listaMatriculas", listaMatriculas);
-		return "listarMatriculas";
-	}
-	
 	 @GetMapping("/matriculaAtualizar/{id}")
 	 public String mostrarAtualizarMatricula(@PathVariable("id") int id, Model model) {
 		 Matricula matricula = servico.buscarPorId(id);

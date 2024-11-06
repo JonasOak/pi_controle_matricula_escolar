@@ -19,3 +19,4 @@ public interface PessoaRepository extends JpaRepository<Pessoa, Integer> {
 	@Query("SELECT p FROM Pessoa p WHERE LOWER(p.nomePessoa) LIKE LOWER(CONCAT('%', :nome, '%'))")
     List<Pessoa> buscarNomes(@Param("nome") String nome);
 }
+	

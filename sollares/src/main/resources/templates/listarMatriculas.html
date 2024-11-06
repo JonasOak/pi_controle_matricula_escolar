@@ -82,17 +82,17 @@
 			<div class="container my-4">
 				<div class="row justify-content-center align-items-center">
 					<div class="col-md-7 d-flex align-items-start">
-						<div class="card p-2 flex-grow-1 text-center"><!--
-							<form class="form-group mb-0 d-flex align-items-center" th:action="@{}" method="get">
-								<label for="userId" class="me-3">Disciplina</label>
-								<input type="text" class="form-control" id="nomePessoa" name="nome"
+						<div class="card p-2 flex-grow-1 text-center">
+							<form class="form-group mb-0 d-flex align-items-center" th:action="@{/matricula/buscar}" method="get">
+								<label for="userId" class="me-3">Matricula</label>
+								<input type="text" class="form-control" id="nome" name="nome"
 									placeholder="Digite o nome">
 								<div class="d-grid gap-2 d-md-flex justify-content-md-end botao-extras">
 									<button type="submit" class="btn btn-primary">Consultar</button>
 									<button type="button" class="btn btn-primary"
-										th:onclick="'location.href=\'' + @{/} + '\''">Cadastrar</button>
+										th:onclick="'location.href=\'' + @{/matriculaCadastrar} + '\''">Cadastrar</button>
 								</div>
-							</form>-->
+							</form>
 						</div><!--
 						<div class="mensagens-container ms-5 d-flex flex-column align-items-start">
 							<p th:if="${}" class="alert alert-danger mensagem" th:text="${}"></p>
@@ -119,16 +119,17 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr th:each="matriculas : ${listaDisciplinas}">
+					<tr th:each="matriculas : ${listaMatriculas}">
 						<td th:text="${matriculas.idMat}"></td>
-						<td th:text="${matriculas.disciplina}"></td>
-						<td th:text="${matriculas.aluno}"></td>
-						<td th:text="${matriculas.dataMatricula}"></td>
-						<td th:text="${matriculas.valorPago}"></td>
+						<td th:text="${matriculas.disciplina.nomeDisciplina}"></td>
+						<td th:text="${matriculas.aluno.nomePessoa}"></td>
+						<td th:text="${#dates.format(matriculas.dataMatricula, 'dd/MM/yyyy')}"></td>
+						<td th:text="'R$ '+${#numbers.formatDecimal(matriculas.valorPago,1,'POINT',2,'COMMA')}"></td>
 						<td th:text="${matriculas.periodo}"></td>
 						<td><select onchange="if(this.value) location = this.value;">
 								<option value="">Selecione...</option>
-								<option th:value="@{/matriculaAtualizar/{id}(id=${matriculas.idMat})}">Atualizar</option>
+								<option th:value="@{/matriculaAtualizar/{id}(id=${matriculas.idMat})}">Atualizar
+								</option>
 								<option th:value="@{/matriculaDeletar/{id}(id=${matriculas.idMat})}">Excluir</option>
 							</select>
 					</tr>

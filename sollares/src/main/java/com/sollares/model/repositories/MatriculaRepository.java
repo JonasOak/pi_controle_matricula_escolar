@@ -12,8 +12,8 @@ import com.sollares.model.entities.Pessoa;
 
 public interface MatriculaRepository extends JpaRepository<Matricula, Integer> {
 	
-	@Query("SELECT p FROM Pessoa p WHERE LOWER(p.nomePessoa) LIKE LOWER(CONCAT('%', :nome, '%'))")
-    List<Pessoa> buscarNomes(@Param("nome") String nome);
+	@Query("SELECT m FROM Matricula m WHERE LOWER(m.aluno.nomePessoa) LIKE LOWER(CONCAT('%', :nome, '%'))")
+    List<Matricula> buscarNomes(@Param("nome") String nome);
 
 	List<Matricula> findByDisciplina(Disciplina disciplina);
 	
