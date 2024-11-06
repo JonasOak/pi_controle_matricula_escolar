@@ -72,35 +72,44 @@
 		</div>
 	</nav>
  <main> 
- <section>
+<section>
   <div class="formulario-pessoa">
     <form class="row g-3" th:action="@{/disciplina}" method="post" th:object="${disciplina}">
-      <h1>Disciplina</h1>
-      <div class="col-md-4">
-        <label for="inputDisciplina4" class="form-label">Disciplina</label>
-        <input type="text" class="form-control" id="inputDisciplina4" th:field="*{nomeDisciplina}">
+      <h1>Disciplina</h1>      
+      <div class="row">
+        <div class="col-md-4 py-2">
+    		<label for="disciplina">Disciplina:</label>
+    		<select id="disciplina" name="disciplina" class="form-select" th:field="*{nomeDisciplina}">
+       	    	<option value="" disabled selected>Selecione</option>
+        		<option th:each="disciplina : ${listaDisciplinas}" 
+                	th:value="${disciplina.codigo}" 
+                	th:text="${disciplina.nomeDisciplina}"></option>
+   			 </select>
+		</div>	
+        <div class="col-md-4  py-2">
+          <label for="professor">Professor:</label>
+          <select id="professor" name="professor" class="form-select" th:field="*{professor}">
+            <option value="" disabled selected>Selecione</option>
+            <option th:each="professor : ${listaProfessores}" 
+                    th:value="${professor.idPessoa}" 
+                    th:text="${professor.nomePessoa}"></option>
+          </select>
+        </div>
       </div>
-      <div class="col-md-3">
-        <label for="inputCargaHoraria4" class="form-label">Carga Horária</label>
-        <input type="text" class="form-control" id="inputCargaHoraria4" th:field="*{cargaHoraria}">
+      <div class="row">
+        <div class="col-md-3  py-4">
+          <label for="inputCargaHoraria4" class="form-label">Carga Horária</label>
+          <input type="text" class="form-control" id="inputCargaHoraria4" th:field="*{cargaHoraria}">
+        </div>
+        <div class="col-md-4  py-4">
+          <label for="inputLimite" class="form-label">Limite de Alunos</label>
+          <input type="text" class="form-control" id="inputLimite" th:field="*{limiteAlunos}">
+        </div>
       </div>
-      <div class="col-md-4">
-    	<label for="professor">Professor:</label>
-    	<select id="professor" name="professor" class="form-select" th:field="*{professor}">
-    	    <option value="" disabled selected>Selecione um Professor</option>
-       	    <option th:each="professor : ${listaProfessores}" 
-                th:value="${professor.idPessoa}" 
-                th:text="${professor.nomePessoa}"></option>
-    	</select>	
-	 </div>
-      <div class="col-md-2">
-        <label for="inputLimite" class="form-label">Limite de Alunos</label>
-        <input type="text" class="form-control" id="inputLimite" th:field="*{limiteAlunos}">
+      <div class="botao-formulario">
+		 <button type="submit" class="btn btn-primary">Atualizar</button>
+		 <button type="button" class="btn btn-primary" th:onclick="'location.href=\'' + @{/usuarios} + '\''">Voltar</button>  
       </div>
-       <div class="botao-formulario">
-    <button type="submit" class="btn btn-primary">Cadastrar</button>
-    <button type="button" class="btn btn-primary" th:onclick="'location.href=\'' + @{/disciplinas} + '\''">Voltar</button>
-  </div>
     </form>
   </div>
 </section>

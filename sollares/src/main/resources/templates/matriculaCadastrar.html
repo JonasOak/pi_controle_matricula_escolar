@@ -78,49 +78,52 @@
   <div class="formulario-pessoa">
     <form class="row g-3" th:action="@{/matriculas}" method="post" th:object="${matricula}">
       <h1>Matrícula</h1>
-      
-      <div class="col-md-3">
-        <label for="inputDisciplina" class="form-label">Disciplina</label>
-        <input type="text" class="form-control" id="inputDisciplina" th:field="*{disciplina}">
+
+      <div class="col-md-4">
+        <label for="disciplina">Disciplina</label>
+        <select id="disciplina" name="disciplina" class="form-select" th:field="*{}">
+          <option value="" disabled selected>Selecione</option>
+          <option th:each="}" th:value="${}" th:text="${}"></option>
+        </select>
       </div>
-      
-      <div class="col-md-2">
-        <label for="inputDate" class="form-label">Data da Matrícula</label>
-        <input type="date" class="form-control" id="inputDate" th:field="*{dataMatricula}">
-      </div>    
-      <div class="col-md-2">
-        <label for="inputValor" class="form-label">Valor</label>
-        <input type="number" class="form-control" id="inputValor" th:field="*{valorPago}">
+      <div class="col-md-4">
+        <label for="aluno">Aluno:</label>
+        <select id="aluno" name="aluno" class="form-select" th:field="*{}">
+          <option value="" disabled selected>Selecione</option>
+          <option th:each="}" th:value="${}" th:text="${}"></option>
+        </select>
       </div>
-      
-      <div class="col-md-6">
-        <label for="inputAluno" class="form-label">Aluno</label>
-        <input type="text" class="form-control" id="inputAluno" th:field="*{aluno}">
-      </div>
-      
-	  <div class="col-md-2">
-	    <label for="inputPeriodo" class="form-label">Período</label>
-	    <select id="inputPeriodo" class="form-select" th:field="*{periodo}">
-	      <option value="" selected>Selecione</option>
-	      <option value="Matutino">Matutino</option>
-	      <option value="Vespertino">Vespertino</option>
-	      <option value="Noturno">Noturno</option>
-	    </select>
-	  </div>
-      
+
       <div class="row">
-      	<div class="col-md-2 ">
-        	<label for="inputID" class="form-label">ID</label>
-        	<input disabled type="text" class="form-control" id="inputID" th:field="*{idMat}">
-        </div>	
+        <div class="col-md-3 py-4">
+          <label for="inputDate" class="form-label">Data da Matrícula</label>
+          <input type="date" class="form-control" id="inputDate" th:field="*{dataMatricula}">
+        </div>
+        <div class="col-md-2 py-4">
+          <label for="inputValor" class="form-label">Valor</label>
+          <input type="number" class="form-control" id="inputValor" th:field="*{valorPago}">
+        </div>
+        <div class="col-md-2 py-4">
+          <label for="inputPeriodo" class="form-label">Período</label>
+          <select id="inputPeriodo" class="form-select" th:field="*{periodo}">
+            <option value="" selected>Selecione</option>
+            <option value="Matutino">Matutino</option>
+            <option value="Vespertino">Vespertino</option>
+            <option value="Noturno">Noturno</option>
+          </select>
+        </div>
+        <div class="col-md-2 py-4">
+          <label for="inputID" class="form-label">ID</label>
+          <input disabled type="text" class="form-control" id="inputID" th:field="*{idMat}">
+        </div>
       </div>
     </form>
     <div class="botao-formulario">
     	<button type="submit" formmethod="post" formaction="/matriculas" class="btn btn-primary">Cadastrar</button>
     	<button type="button" class="btn btn-primary" th:onclick="'location.href=\'' + @{/} + '\''">Voltar</button>
-      </div>
-  </div>
-</section>      
+    </div>
+  </div> 
+</section>    
   <div>
     <img class="logo-nav" src="../static/imagens/sollaresLogo.png" th:src="@{/imagens/sollaresLogo.png}" alt="Logo Sollares">
   </div>

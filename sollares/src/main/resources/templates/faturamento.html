@@ -83,6 +83,15 @@
         <label for="inputDate" class="form-label">Data Final</label>
         <input type="date" class="form-control" id="inputDate4" th:field="*{}">
      </div>
+     <div class="col-md-3 py-2">
+    		<label for="disciplina">Disciplina:</label>
+    		<select id="disciplina" name="disciplina" class="form-select" th:field="*{nomeDisciplina}">
+       	    	<option value="" disabled selected>Selecione</option>
+        		<option th:each="disciplina : ${listaDisciplinas}" 
+                	th:value="${disciplina.codigo}" 
+                	th:text="${disciplina.nomeDisciplina}"></option>
+   			 </select>
+		</div>	
      <div class="col-md-2">
         <label for="inputAddress2" class="form-label">Faturamento</label>
         <input disabled type="text" class="form-control" id="inputAddress2" th:field="*{}" placeholder="Valor Total do Faturamento">
