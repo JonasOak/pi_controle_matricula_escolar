@@ -92,7 +92,57 @@ public class MatriculaResources {
             model.addAttribute("errorMessage", "Erro ao cadastrar matrícula: " + e.getMessage());
             return "teste"; // Retorna à página do formulário em caso de erro.
         }
+        
+        
     }
+    
+    //método atualizar 
+    
+    @GetMapping("/matricula/editar/{id}")
+    public String editarMatricula(@PathVariable("id") Integer id, Model model) {
+        Matricula matricula = servico.buscarPorId(id);
+        List<Disciplina> listaDisciplinas = servicoDisciplina.buscarTodos();
+        List<Pessoa> listaPessoas = matriculaRepository.buscarPessoas();
+
+        model.addAttribute("matricula", matricula);
+        model.addAttribute("listaDisciplinas", listaDisciplinas);
+        model.addAttribute("listaPessoas", listaPessoas);
+
+        return "matriculaAtualizar"; 
+    }
+    
+    @PostMapping("/matricula/atualizar/{id}")
+    public String atualizarMatricula(@PathVariable("id") Integer id, @ModelAttribute("matricula") Matricula matriculaAtualizada, 
+                                     RedirectAttributes redirectAttributes, Model model) {
+        try {
+            servico.atualizar(id, matriculaAtualizada);
+            redirectAttributes.addFlashAttribute("successMessage", "Matrícula atualizada com sucesso.");
+            return "redirect:/matriculas";
+        } catch (Exception e) {
+            model.addAttribute("errorMessage", "Erro ao atualizar matrícula: " + e.getMessage());
+            return "matriculaAtualizar"; 
+        }
+    }
+    
+    
+    
+    // Deletar não funciona tem que fazer um confirma, fiquei cansada jonas rsss
+    
+    
+    
+    @GetMapping("/matricula/deletar/{id}")
+    public String deletarMatricula(@PathVariable("id") Integer id, RedirectAttributes redirectAttributes) {
+        try {
+            servico.deletar(id);
+            redirectAttributes.addFlashAttribute("successMessage", "Matrícula deletada com sucesso.");
+        } catch (Exception e) {
+            redirectAttributes.addFlashAttribute("errorMessage", "Erro ao deletar matrícula: " + e.getMessage());
+        }
+        return "redirect:/matriculas";
+    }
+
+    
+    
 	
 	/*
 	 @GetMapping("/matriculaAtualizar/{id}")

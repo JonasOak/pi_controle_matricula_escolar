@@ -77,17 +77,12 @@
     <form class="row g-3" th:action="@{/disciplina}" method="post" th:object="${disciplina}">
       <h1>Disciplina</h1>      
       <div class="row">
-        <div class="col-md-4 py-2">
-    		<label for="disciplina">Disciplina:</label>
-    		<select id="disciplina" name="disciplina" class="form-select" th:field="*{nomeDisciplina}">
-       	    	<option value="" disabled selected>Selecione</option>
-        		<option th:each="disciplina : ${listaDisciplinas}" 
-                	th:value="${disciplina.codigo}" 
-                	th:text="${disciplina.nomeDisciplina}"></option>
-   			 </select>
+        <div class="col-md-3 py-1">
+    	  <label for="inputDisciplina4" class="form-label">Disciplina</label>
+          <input type="text" class="form-control" id="inputDisciplina4" th:field="*{nomeDisciplina}">
 		</div>	
-        <div class="col-md-4  py-2">
-          <label for="professor">Professor:</label>
+        <div class="col-md-3  py-2">
+          <label for="professor">Professor</label>
           <select id="professor" name="professor" class="form-select" th:field="*{professor}">
             <option value="" disabled selected>Selecione</option>
             <option th:each="professor : ${listaProfessores}" 
@@ -97,11 +92,11 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-md-3  py-4">
+        <div class="col-md-2  py-4">
           <label for="inputCargaHoraria4" class="form-label">Carga Horária</label>
           <input type="text" class="form-control" id="inputCargaHoraria4" th:field="*{cargaHoraria}">
         </div>
-        <div class="col-md-4  py-4">
+        <div class="col-md-2  py-4">
           <label for="inputLimite" class="form-label">Limite de Alunos</label>
           <input type="text" class="form-control" id="inputLimite" th:field="*{limiteAlunos}">
         </div>

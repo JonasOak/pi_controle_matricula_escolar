@@ -126,12 +126,12 @@
 						<td th:text="${#dates.format(matriculas.dataMatricula, 'dd/MM/yyyy')}"></td>
 						<td th:text="'R$ '+${#numbers.formatDecimal(matriculas.valorPago,1,'POINT',2,'COMMA')}"></td>
 						<td th:text="${matriculas.periodo}"></td>
-						<td><select onchange="if(this.value) location = this.value;">
+						<td>
+						<select onchange="if(this.value) location = this.value;">
 								<option value="">Selecione...</option>
-								<option th:value="@{/matriculaAtualizar/{id}(id=${matriculas.idMat})}">Atualizar
-								</option>
-								<option th:value="@{/matriculaDeletar/{id}(id=${matriculas.idMat})}">Excluir</option>
-							</select>
+								<option th:value="@{/matricula/editar/{id}(id=${matriculas.idMat})}">Atualizar</option>
+								<option th:href="@{/matricula/deletar/{id}(id=${matriculas.idMat})}">Excluir</option>
+						</select>
 					</tr>
 				</tbody>
 			</table>
