@@ -93,15 +93,15 @@
 										th:onclick="'location.href=\'' + @{/matriculaCadastrar} + '\''">Cadastrar</button>
 								</div>
 							</form>
-						</div><!--
+						</div>
 						<div class="mensagens-container ms-5 d-flex flex-column align-items-start">
-							<p th:if="${}" class="alert alert-danger mensagem" th:text="${}"></p>
-							<p th:if="${}" class="alert alert-danger mensagem" th:text="${}"></p>
-							<p th:if="${}" class="alert alert-primary mensagem" th:text="${}"></p>
-							<p th:if="${}" class="alert alert-primary mensagem" th:text="${}"></p>
-							<p th:if="${}" class="alert alert-primary mensagem" th:text="${}"></p>
-							<p th:if="${a}" class="alert alert-primary mensagem" th:text="${}"></p>
-						</div>-->
+							<p th:if="${errorInserir}" class="alert alert-danger mensagem" th:text="${errorInserir}"></p>
+							<p th:if="${erroAtualizar}" class="alert alert-danger mensagem" th:text="${erroAtualizar}"></p>
+							<p th:if="${erroDeletar}" class="alert alert-danger mensagem" th:text="${erroDeletar}"></p>
+							<p th:if="${sucessoCadastro}" class="alert alert-primary mensagem" th:text="${sucessoCadastro}"></p>
+							<p th:if="${sucessoAtualizar}" class="alert alert-primary mensagem" th:text="${sucessoAtualizar}"></p>
+							<p th:if="${sucessoDeletar}" class="alert alert-primary mensagem" th:text="${sucessoDeletar}"></p>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -129,8 +129,8 @@
 						<td>
 						<select onchange="if(this.value) location = this.value;">
 								<option value="">Selecione...</option>
-								<option th:value="@{/matricula/editar/{id}(id=${matriculas.idMat})}">Atualizar</option>
-								<option th:href="@{/matricula/deletar/{id}(id=${matriculas.idMat})}">Excluir</option>
+								<option th:value="@{/matriculaAtualizar/{id}(id=${matriculas.idMat})}">Atualizar</option>
+								<option th:value="@{/matriculaDeletar/{id}(id=${matriculas.idMat})}">Excluir</option>
 						</select>
 					</tr>
 				</tbody>

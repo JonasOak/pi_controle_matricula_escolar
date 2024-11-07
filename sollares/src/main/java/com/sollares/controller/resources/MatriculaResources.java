@@ -30,162 +30,120 @@ public class MatriculaResources {
 
 	@Autowired
 	private MatriculaService servico;
-	
+
 	@Autowired
 	private DisciplinaService servicoDisciplina;
-	
+
 	@Autowired
 	private PessoaService servicoPessoa;
-	
+
 	@Autowired
 	private MatriculaRepository matriculaRepository;
-	
+
 	@ModelAttribute("usuarioLogado")
-    public Usuario getUsuarioLogado(HttpSession session) {
-        return (Usuario) session.getAttribute("usuarioLogado");
-    }
-	
+	public Usuario getUsuarioLogado(HttpSession session) {
+		return (Usuario) session.getAttribute("usuarioLogado");
+	}
+
 	@GetMapping("/matriculas")
-    public String listarTodos(HttpSession session, Model model) {
-	    Usuario usuarioLogado = (Usuario) session.getAttribute("usuarioLogado");
-	    if (usuarioLogado == null) {
-	        model.addAttribute("msgFaltaLogin", "Por favor, faça login para acessar o portal.");
-	        return "redirect:/index";
-	    }
-        List<Matricula> listaAlunos = servico.buscarMatriculaComAlunos();
-        List<Matricula> listaDisciplinas = servico.buscarDisciplinasComProfessores();
-        model.addAttribute("listaAlunos", listaAlunos);
-        model.addAttribute("listaMatriculas", listaDisciplinas);
-        return "listarMatriculas"; 
-    }
-	
-    @GetMapping("/matricula/buscar")
-    public String buscarMatriculasPorNome(@RequestParam(value = "nome", required = false) String nome, Model model) {
-        List<Matricula> matricula = servico.buscarPorNome(nome);
-        model.addAttribute("listaMatriculas", matricula); 
-        return "listarMatriculas";
-    }
-    
-    @GetMapping("/matriculaCadastrar")
-    public String cadastrarMatricula(HttpSession session, Model model) {
-        Usuario usuarioLogado = (Usuario) session.getAttribute("usuarioLogado");
-        if (usuarioLogado == null) {
-            model.addAttribute("msgFaltaLogin", "Por favor, faça login para acessar o portal.");
-            return "redirect:/index";
-        }
-        model.addAttribute("matricula", new Matricula());
-        List<Disciplina> listaDisciplinas = servicoDisciplina.buscarTodos();
-        model.addAttribute("listaDisciplinas", listaDisciplinas);
-        List<Pessoa> listaPessoas = matriculaRepository.buscarPessoas();
-        model.addAttribute("listaPessoas", listaPessoas);
-        
-        return "matriculaCadastrar";
-    }
-    
-    @PostMapping("/matricula")
-    public String inserir(@ModelAttribute("matricula") Matricula matricula, RedirectAttributes redirectAttributes, Model model) {
-        try {
-            servico.inserir(matricula);
-            redirectAttributes.addFlashAttribute("successMessage", "Matrícula cadastrada com sucesso.");
-            return "redirect:/matriculas"; // Redireciona para a página de listagem de matrículas.
-        } catch (Exception e) {
-            model.addAttribute("errorMessage", "Erro ao cadastrar matrícula: " + e.getMessage());
-            return "teste"; // Retorna à página do formulário em caso de erro.
-        }
-        
-        
-    }
-    
-    //método atualizar 
-    
-    @GetMapping("/matricula/editar/{id}")
-    public String editarMatricula(@PathVariable("id") Integer id, Model model) {
-        Matricula matricula = servico.buscarPorId(id);
-        List<Disciplina> listaDisciplinas = servicoDisciplina.buscarTodos();
-        List<Pessoa> listaPessoas = matriculaRepository.buscarPessoas();
+	public String listarTodos(HttpSession session, Model model) {
+		Usuario usuarioLogado = (Usuario) session.getAttribute("usuarioLogado");
+		if (usuarioLogado == null) {
+			model.addAttribute("msgFaltaLogin", "Por favor, faça login para acessar o portal.");
+			return "redirect:/index";
+		}
+		List<Matricula> listaAlunos = servico.buscarMatriculaComAlunos();
+		List<Matricula> listaDisciplinas = servico.buscarDisciplinasComProfessores();
+		model.addAttribute("listaAlunos", listaAlunos);
+		model.addAttribute("listaMatriculas", listaDisciplinas);
+		return "listarMatriculas";
+	}
 
-        model.addAttribute("matricula", matricula);
-        model.addAttribute("listaDisciplinas", listaDisciplinas);
-        model.addAttribute("listaPessoas", listaPessoas);
+	@GetMapping("/matricula/buscar")
+	public String buscarMatriculasPorNome(@RequestParam(value = "nome", required = false) String nome, Model model) {
+		List<Matricula> matricula = servico.buscarPorNome(nome);
+		model.addAttribute("listaMatriculas", matricula);
+		return "listarMatriculas";
+	}
 
-        return "matriculaAtualizar"; 
-    }
-    
-    @PostMapping("/matricula/atualizar/{id}")
-    public String atualizarMatricula(@PathVariable("id") Integer id, @ModelAttribute("matricula") Matricula matriculaAtualizada, 
-                                     RedirectAttributes redirectAttributes, Model model) {
-        try {
-            servico.atualizar(id, matriculaAtualizada);
-            redirectAttributes.addFlashAttribute("successMessage", "Matrícula atualizada com sucesso.");
-            return "redirect:/matriculas";
-        } catch (Exception e) {
-            model.addAttribute("errorMessage", "Erro ao atualizar matrícula: " + e.getMessage());
-            return "matriculaAtualizar"; 
-        }
-    }
-    
-    
-    
-    // Deletar não funciona tem que fazer um confirma, fiquei cansada jonas rsss
-    
-    
-    
-    @GetMapping("/matricula/deletar/{id}")
-    public String deletarMatricula(@PathVariable("id") Integer id, RedirectAttributes redirectAttributes) {
-        try {
-            servico.deletar(id);
-            redirectAttributes.addFlashAttribute("successMessage", "Matrícula deletada com sucesso.");
-        } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("errorMessage", "Erro ao deletar matrícula: " + e.getMessage());
-        }
-        return "redirect:/matriculas";
-    }
+	@GetMapping("/matriculaCadastrar")
+	public String cadastrarMatricula(HttpSession session, Model model) {
+		Usuario usuarioLogado = (Usuario) session.getAttribute("usuarioLogado");
+		if (usuarioLogado == null) {
+			model.addAttribute("msgFaltaLogin", "Por favor, faça login para acessar o portal.");
+			return "redirect:/index";
+		}
+		model.addAttribute("matricula", new Matricula());
+		List<Disciplina> listaDisciplinas = servicoDisciplina.buscarTodos();
+		model.addAttribute("listaDisciplinas", listaDisciplinas);
+		List<Pessoa> listaPessoas = matriculaRepository.buscarPessoas();
+		model.addAttribute("listaPessoas", listaPessoas);
 
-    
-    
-	
-	/*
-	 @GetMapping("/matriculaAtualizar/{id}")
-	 public String mostrarAtualizarMatricula(@PathVariable("id") int id, Model model) {
-		 Matricula matricula = servico.buscarPorId(id);
-	     List<Pessoa> listaProfessores = matriculaRepository.buscarPessoas();
-	     model.addAttribute("matricula", matricula);
-	     model.addAttribute("listaProfessores", listaProfessores);
-	     return "matriculaAtualizar";
-	 }
-	*/
-	/*
-	@GetMapping
-	public ResponseEntity<List<Matricula>> buscarTodos() {
-		List<Matricula> list = servico.buscarTodos();
-		return ResponseEntity.ok().body(list);
+		return "matriculaCadastrar";
 	}
-	
-	@GetMapping(value = "/{id}")
-	public ResponseEntity<Matricula> buscarPorId(@PathVariable Integer id) {
-		Matricula obj = servico.buscarPorId(id);
-		return ResponseEntity.ok().body(obj);
+
+	@PostMapping("/matricula")
+	public String inserir(@ModelAttribute("matricula") Matricula matricula, RedirectAttributes redirectAttributes,
+			Model model) {
+		try {
+			servico.inserir(matricula);
+			redirectAttributes.addFlashAttribute("sucessoCadastro", "Matrícula cadastrada com sucesso.");
+			return "redirect:/matriculas";
+		} catch (Exception e) {
+			model.addAttribute("errorInserir", "Erro ao cadastrar matrícula: " + e.getMessage());
+			return "redirect:/matriculas";
+		}
+
 	}
-	
-	@PostMapping
-	public ResponseEntity<Matricula> inserir(@RequestBody Matricula obj) {
-		obj = servico.inserir(obj);
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getIdMat()).toUri();
-		return ResponseEntity.created(uri).body(obj);
+
+	@GetMapping("/matriculaAtualizar/{id}")
+	public String mostrarAtualizarMatricula(@PathVariable("id") Integer id, Model model) {
+		Matricula matricula = servico.buscarPorId(id);
+		List<Disciplina> listaDisciplinas = servicoDisciplina.buscarTodos();
+		List<Pessoa> listaPessoas = matriculaRepository.buscarPessoas();
+
+		model.addAttribute("matricula", matricula);
+		model.addAttribute("listaDisciplinas", listaDisciplinas);
+		model.addAttribute("listaPessoas", listaPessoas);
+
+		return "matriculaAtualizar";
 	}
-	
-	/*
-	@DeleteMapping(value = "/{id}")
-	public ResponseEntity<Void> deletar(@PathVariable Integer id) {
-		servico.deletar(id);
-		return ResponseEntity.noContent().build();
+
+	@PostMapping("/confirmarAtualizarMatricula/{id}")
+	public String atualizarMatricula(@PathVariable("id") Integer id,
+			@ModelAttribute("matricula") Matricula matriculaAtualizada, RedirectAttributes redirectAttributes,
+			Model model) {
+		try {
+			servico.atualizar(id, matriculaAtualizada);
+			redirectAttributes.addFlashAttribute("sucessoAtualizar", "Matrícula atualizada com sucesso.");
+			return "redirect:/matriculas";
+		} catch (Exception e) {
+			model.addAttribute("erroAtualizar", "Erro ao atualizar matrícula: " + e.getMessage());
+			return "matriculaAtualizar";
+		}
 	}
-	
-	@PutMapping(value = "/{id}")
-	public ResponseEntity<Matricula> atualizar(@PathVariable Integer id, @RequestBody Matricula obj) {
-		obj = servico.atualizar(id, obj);
-		return ResponseEntity.ok().body(obj);
+
+	@GetMapping("/matriculaDeletar/{id}")
+	public String mostrarDeletarMatricula(@PathVariable("id") int codigo, Model model) {
+		Matricula matricula = servico.buscarPorId(codigo);
+		List<Disciplina> listaDisciplinas = servicoDisciplina.buscarTodos();
+		List<Pessoa> listaPessoas = matriculaRepository.buscarPessoas();
+
+		model.addAttribute("matricula", matricula);
+		model.addAttribute("listaDisciplinas", listaDisciplinas);
+		model.addAttribute("listaPessoas", listaPessoas);
+		return "matriculaDeletar";
 	}
-	*/
-	
+
+	@GetMapping("/confirmarDeletarMatricula/{codigo}")
+	public String deletar(@PathVariable("codigo") int codigo, RedirectAttributes redirectAttributes) {
+		try {
+			servico.deletar(codigo);
+			redirectAttributes.addFlashAttribute("sucessoDeletar", "Matricula deletada com sucesso.");
+		} catch (Exception e) {
+			System.out.println("Erro ao deletar disciplina: " + e.getMessage());
+			redirectAttributes.addFlashAttribute("erroDeletar", "Erro ao deletar matrícula.");
+		}
+		return "redirect:/matriculas";
+	}
 }

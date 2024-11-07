@@ -45,7 +45,7 @@
 						</a>
 						<ul class="dropdown-menu">
 							<li><a class="dropdown-item" th:if="${usuarioLogado.cargo == 'Administrador'}" href="listarMatriculas.html"
-									th:href="@{/matricula}">Matricula</a></li>
+									th:href="@{/matriculas}">Matricula</a></li>
 							<li><a class="dropdown-item" th:if="${usuarioLogado.cargo == 'Administrador'}" href="faturamento.html"
 									th:href="@{/faturamento}">Faturamento</a></li>
 							<li><a class="dropdown-item" th:if="${usuarioLogado.cargo == 'Professor' or usuarioLogado.cargo == 'Administrador'}" href="cursoProfessor.html" th:href="@{/cursoProfessor}">Cursos
@@ -74,12 +74,12 @@
 <main>
 <section>
   <div class="formulario-pessoa">
-    <form class="row g-3" th:action="@{/matricula/deletar/{id}(id=${matricula.idMat})}" method="GET" th:object="${matricula}">
+    <form class="row g-3" th:action="@{/confirmarDeletarMatricula/{id}(id=${matricula.idMat})}" method="GET" th:object="${matricula}">
       <h1>Matrícula</h1>
       
        <div class="col-md-4">
         <label for="disciplina">Disciplina</label>
-		<select id="disciplina" name="disciplina" class="form-control" th:field="*{disciplina}">
+		<select disabled id="disciplina" name="disciplina" class="form-control" th:field="*{disciplina}">
 			<option th:each="disciplina : ${listaDisciplinas}" 
 			  th:value="${disciplina.codigo}" 
 			  th:text="${disciplina.nomeDisciplina}">
@@ -88,7 +88,7 @@
       </div>
       <div class="col-md-4 py-2">
 		<label for="aluno">Aluno</label>
-		<select id="aluno" name="aluno" class="form-control" th:field="*{aluno}">
+		<select disabled id="aluno" name="aluno" class="form-control" th:field="*{aluno}">
 	   		 <option th:each="aluno : ${listaPessoas}" 
 			  	th:value="${aluno.idPessoa}" 
 			    th:text="${aluno.nomePessoa}">
@@ -98,15 +98,15 @@
 	 <div class="row">        
       <div class="col-md-3 py-4">
         <label for="inputDate" class="form-label">Data da Matrícula</label>
-        <input type="date" class="form-control" id="inputDate" th:field="*{dataMatricula}">
+        <input disabled type="date" class="form-control" id="inputDate" th:field="*{dataMatricula}">
       </div>    
       <div class="col-md-2 py-4">
         <label for="inputValor" class="form-label">Valor</label>
-        <input type="number" class="form-control" id="inputValor" th:field="*{valorPago}">
+        <input disabled type="number" class="form-control" id="inputValor" th:field="*{valorPago}">
       </div>      
 	 <div class="col-md-2 py-4">
 	    <label for="inputPeriodo" class="form-label">Período</label>
-	    <select id="inputPeriodo" class="form-select" th:field="*{periodo}">
+	    <select disabled id="inputPeriodo" class="form-select" th:field="*{periodo}">
 	      <option value="" selected>Selecione</option>
 	      <option value="Matutino">Matutino</option>
 	      <option value="Vespertino">Vespertino</option>
