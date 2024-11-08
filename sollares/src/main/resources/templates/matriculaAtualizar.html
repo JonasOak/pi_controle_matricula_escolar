@@ -75,7 +75,7 @@
 <main>
 <section>
   <div class="formulario-pessoa">
-    <form class="row g-3" th:action="@{/matricula/atualizar/{idMat}(idMat=${matricula.idMat})}" method="POST" th:object="${matricula}">
+    <form class="row g-3" th:action="@{/confirmarAtualizarMatricula/{idMat}(idMat=${matricula.idMat})}" method="POST" th:object="${matricula}">
       <h1>Matrícula</h1>      
       <div class="col-md-4">
         <label for="disciplina">Disciplina</label>
