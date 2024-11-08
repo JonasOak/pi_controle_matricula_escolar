@@ -1,6 +1,7 @@
 package com.sollares.controller.resources;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,11 +17,13 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.sollares.controller.services.DisciplinaService;
 import com.sollares.controller.services.MatriculaService;
 import com.sollares.controller.services.PessoaService;
+import com.sollares.exception.LimiteException;
 import com.sollares.model.entities.Disciplina;
 import com.sollares.model.entities.Matricula;
 import com.sollares.model.entities.Pessoa;
 import com.sollares.model.entities.Usuario;
 import com.sollares.model.repositories.MatriculaRepository;
+import com.sollares.model.repositories.PessoaRepository;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -38,11 +41,70 @@ public class MatriculaResources {
 	private PessoaService servicoPessoa;
 
 	@Autowired
+	private PessoaRepository pessoaRepository;
+
+	@Autowired
 	private MatriculaRepository matriculaRepository;
 
 	@ModelAttribute("usuarioLogado")
 	public Usuario getUsuarioLogado(HttpSession session) {
 		return (Usuario) session.getAttribute("usuarioLogado");
+	}
+
+	@GetMapping("/faturamento")
+	public String getFaturamento(HttpSession session, Model model) {
+		Usuario usuarioLogado = (Usuario) session.getAttribute("usuarioLogado");
+		if (usuarioLogado == null) {
+			model.addAttribute("msgFaltaLogin", "Por favor, faça login para acessar o portal.");
+			return "redirect:/index";
+		}
+		return "faturamento";
+	}
+
+	@GetMapping("/cursoProfessor")
+	public String getCursoProfessor(HttpSession session, Model model) {
+		Usuario usuarioLogado = (Usuario) session.getAttribute("usuarioLogado");
+		if (usuarioLogado == null) {
+			model.addAttribute("msgFaltaLogin", "Por favor, faça login para acessar o portal.");
+			return "redirect:/index";
+		}
+		List<Pessoa> professores = pessoaRepository.findDistinctProfessores();
+		model.addAttribute("professores", professores);
+		return "cursoProfessor";
+	}
+
+	@PostMapping("/consultar/cursoProfessor")
+	public String consultar(@RequestParam("professorId") Integer professorId, Model model) {
+		Optional<Pessoa> professorOpt = pessoaRepository.findById(professorId);
+	    Pessoa professor = professorOpt.orElse(null);
+	    List<Disciplina> disciplinas = matriculaRepository.buscarDisciplinasPorProfessor(professorId);
+	    
+	    model.addAttribute("disciplinas", disciplinas);
+	    model.addAttribute("professor", professor);
+	    return "listarCursoProfessor";
+	}
+
+	@GetMapping("/cursoAluno")
+	public String getCursoAluno(HttpSession session, Model model) {
+		Usuario usuarioLogado = (Usuario) session.getAttribute("usuarioLogado");
+		if (usuarioLogado == null) {
+			model.addAttribute("msgFaltaLogin", "Por favor, faça login para acessar o portal.");
+			return "redirect:/index";
+		}
+		List<Pessoa> alunos = pessoaRepository.findDistinctAlunos();
+		model.addAttribute("alunos", alunos);
+		return "cursoAluno";
+	}
+	
+	@PostMapping("/consultar/cursoAluno")
+	public String consultarCursosAluno(@RequestParam("alunoId") Integer alunoId, Model model) {
+	    Optional<Pessoa> alunoOpt = pessoaRepository.findById(alunoId);
+	    Pessoa aluno = alunoOpt.orElse(null);
+	    List<Disciplina> disciplinas = matriculaRepository.buscarDisciplinasPorAluno(alunoId);
+	    
+	    model.addAttribute("disciplinas", disciplinas);
+	    model.addAttribute("aluno", aluno);
+	    return "listarCursoAluno";
 	}
 
 	@GetMapping("/matriculas")
@@ -89,8 +151,8 @@ public class MatriculaResources {
 			servico.inserir(matricula);
 			redirectAttributes.addFlashAttribute("sucessoCadastro", "Matrícula cadastrada com sucesso.");
 			return "redirect:/matriculas";
-		} catch (Exception e) {
-			model.addAttribute("errorInserir", "Erro ao cadastrar matrícula: " + e.getMessage());
+		} catch (LimiteException e) {
+			redirectAttributes.addFlashAttribute("errorInserir", "Erro ao cadastrar matrícula: " + e.getMessage());
 			return "redirect:/matriculas";
 		}
 
@@ -118,7 +180,7 @@ public class MatriculaResources {
 			redirectAttributes.addFlashAttribute("sucessoAtualizar", "Matrícula atualizada com sucesso.");
 			return "redirect:/matriculas";
 		} catch (Exception e) {
-			model.addAttribute("erroAtualizar", "Erro ao atualizar matrícula: " + e.getMessage());
+			redirectAttributes.addFlashAttribute("erroAtualizar", "Erro ao atualizar matrícula: " + e.getMessage());
 			return "matriculaAtualizar";
 		}
 	}
