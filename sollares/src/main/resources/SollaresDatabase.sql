@@ -48,3 +48,10 @@ CREATE TABLE tb_usuario (
     email VARCHAR(255),
     PRIMARY KEY (id_usuario)
 );
+
+
+-- Administradores do sistema
+INSERT INTO tb_usuario (nome, cargo, login, senha, email) 
+VALUES 
+    ('Layla dos Santos Nascimento', 'Administrador', 'layla', '1234', 'layla@exemplo.com'),
+    ('Jonas Gabriel', 'Administrador', 'jonas', '123456', 'jonas@exemplo.com');
