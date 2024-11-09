@@ -48,8 +48,7 @@
 						</ul></li>
 					<li class="nav-item"
 						th:if="${usuarioLogado.cargo == 'Administrador'}"><a
-						class="nav-opcao nav-link" href="listarDisciplinas.html"
-						th:href="@{/disciplinas}">Disciplina</a></li>
+						class="nav-opcao nav-link" th:href="@{/disciplinas}">Disciplina</a></li>
 					<li class="nav-opcao nav-item dropdown"
 						th:if="${usuarioLogado != null}"><a
 						class="nav-opcao nav-link dropdown-toggle" role="button"
@@ -57,18 +56,17 @@
 						<ul class="dropdown-menu">
 							<li><a class="dropdown-item"
 								th:if="${usuarioLogado.cargo == 'Administrador'}"
-								href="listarMatriculas.html" th:href="@{/matricula}">Matricula</a></li>
+								th:href="@{/matricula}">Matricula</a></li>
 							<li><a class="dropdown-item"
 								th:if="${usuarioLogado.cargo == 'Administrador'}"
-								href="faturamento.html" th:href="@{/faturamento}">Faturamento</a></li>
+								th:href="@{/faturamento}">Faturamento</a></li>
 							<li><a class="dropdown-item"
-								th:if="${usuarioLogado.cargo == 'Professor' or usuarioLogado.cargo == 'Administrador'}"
-								href="cursoProfessor.html" th:href="@{/cursoProfessor}">Cursos
+								th:if="${usuarioLogado != null or usuarioLogado.cargo == 'Administrador'}"
+								th:href="@{/cursoProfessor}">Cursos
 									- Professor</a></li>
 							<li><a class="dropdown-item"
-								th:if="${usuarioLogado.cargo == 'Aluno' or usuarioLogado.cargo == 'Administrador'}"
-								href="cursoAluno.html" th:href="@{/cursoAluno}">Cursos -
-									Aluno</a></li>
+								th:if="${usuarioLogado != null or usuarioLogado.cargo == 'Administrador'}"
+								th:href="@{/cursoAluno}">Cursos - Aluno</a></li>
 						</ul></li>
 				</ul>
 				<ul class="navbar-nav ms-auto">

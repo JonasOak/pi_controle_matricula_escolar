@@ -1,49 +1,38 @@
 <!DOCTYPE html>
 <html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
-	crossorigin="anonymous">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link
-	href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;400;700&display=swap"
-	rel="stylesheet">
-<link rel="stylesheet" href="../static/css/login.css"
-	th:href="@{/css/login.css}">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;400;700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="../static/css/login.css" th:href="@{/css/login.css}">
 </head>
+
 <body>
 	<main class="acesso-externo">
 		<section class="acesso-externo-form">
 			<div class="form-content">
-				<form th:action="@{/login}" th:object="${usuario}"
-					class="formulario-login" method="post">
-					<div class="alert alert-danger" role="alert"
-						th:if="${msgFaltaLogin}">
+				<form th:action="@{/login}" th:object="${usuario}" class="formulario-login" method="post">
+					<div class="alert alert-danger" role="alert" th:if="${msgFaltaLogin}">
 						<strong th:text="${msgFaltaLogin}"></strong>
 					</div>
-					<div class="alert alert-danger" role="alert"
-						th:if="${msgLoginErrado}">
+					<div class="alert alert-danger" role="alert" th:if="${msgLoginErrado}">
 						<strong th:text="${msgLoginErrado}"></strong>
 					</div>
 					<div class="externo-logo">
-						<img class="externo-logo-img"
-							src="../static/imagens/sollaresLogo.png"
-							th:src="@{/imagens/sollaresLogo.png}" alt="logo">
+						<img class="externo-logo-img" th:src="@{/imagens/sollaresLogo.png}" alt="logo">
 					</div>
 					<div class="externo-form-campos">
-						<label for="usuario" class="label-usuario">Usuário:</label> <input
-							th:field="*{login}" name="usuario" type="text" id="usuario"
-							class="input-login" autofocus>
+						<label for="usuario" class="label-usuario">Usuário:</label> <input th:field="*{login}"
+							name="usuario" type="text" id="usuario" class="input-login" autofocus>
 					</div>
 					<div class="externo-form-campos">
-						<label for="senha" class="label-usuario">Senha:</label> <input
-							th:field="*{senha}" name="senha" type="password" id="senha"
-							class="input-login">
+						<label for="senha" class="label-usuario">Senha:</label> <input th:field="*{senha}" name="senha"
+							type="password" id="senha" class="input-login">
 					</div>
 					<div class="externo-form-botao">
 						<input class="input-botao" type="submit" value="Entrar">
@@ -56,13 +45,12 @@
 			</div>
 		</section>
 		<section class="img-section">
-			<img class="img-login" src="../static/imagens/img-login.png"
-				th:src="@{/imagens/img-login.png}">
+			<img class="img-login" src="../static/imagens/img-login.png" th:src="@{/imagens/img-login.png}">
 		</section>
 	</main>
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
 		crossorigin="anonymous"></script>
 </body>
+
 </html>

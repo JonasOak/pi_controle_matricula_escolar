@@ -60,11 +60,11 @@
 								th:if="${usuarioLogado.cargo == 'Administrador'}"
 								href="faturamento.html" th:href="@{/faturamento}">Faturamento</a></li>
 							<li><a class="dropdown-item"
-								th:if="${usuarioLogado.cargo == 'Professor' or usuarioLogado.cargo == 'Administrador'}"
+								th:if="${usuarioLogado != null or usuarioLogado.cargo == 'Administrador'}"
 								href="cursoProfessor.html" th:href="@{/cursoProfessor}">Cursos
 									- Professor</a></li>
 							<li><a class="dropdown-item"
-								th:if="${usuarioLogado.cargo == 'Aluno' or usuarioLogado.cargo == 'Administrador'}"
+								th:if="${usuarioLogado != null or usuarioLogado.cargo == 'Administrador'}"
 								href="cursoAluno.html" th:href="@{/cursoAluno}">Cursos -
 									Aluno</a></li>
 						</ul></li>
