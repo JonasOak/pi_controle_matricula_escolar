@@ -1,6 +1,7 @@
 package com.sollares.config;
 
 import java.math.BigDecimal;
+import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 
@@ -17,6 +18,7 @@ import com.sollares.model.repositories.DisciplinaRepository;
 import com.sollares.model.repositories.MatriculaRepository;
 import com.sollares.model.repositories.PessoaRepository;
 import com.sollares.model.repositories.UsuarioRepository;
+
 
 @Configuration
 @Profile("test")
@@ -48,12 +50,14 @@ public class TestConfig implements CommandLineRunner {
 		Disciplina d2 = new Disciplina(0, "Português", 60, p1, 20);
 		Disciplina d3 = new Disciplina(0, "Inglês", 60, p2, 3);
 		disciplinaRepository.saveAll(Arrays.asList(d1, d2, d3));
+	
+		Matricula m1 = new Matricula(d2, p3, new Date(sdf.parse("14-10-2024").getTime()), new BigDecimal("600"), "Noturno");
+		Matricula m2 = new Matricula(d3, p2, new Date(sdf.parse("14-10-2024").getTime()), new BigDecimal("300"), "Vespertino");
+		Matricula m3 = new Matricula(d3, p3, new Date(sdf.parse("14-10-2024").getTime()), new BigDecimal("600"), "Matutino");
+		Matricula m4 = new Matricula(d3, p4, new Date(sdf.parse("14-10-2024").getTime()), new BigDecimal("600"), "Matutino");
+
 		
-		Matricula m1 = new Matricula(0, d2, p3, sdf.parse("14-10-2024"), new BigDecimal("600"), "Noturno");
-		Matricula m2 = new Matricula(0, d3, p2, sdf.parse("14-10-2024"), new BigDecimal("300"), "Vespertino");
-		Matricula m3 = new Matricula(0, d3, p3, sdf.parse("14-10-2024"), new BigDecimal("600"), "Matutino");
-		Matricula m4 = new Matricula(0, d3, p4, sdf.parse("14-10-2024"), new BigDecimal("600"), "Matutino");
-		matriculaRepository.saveAll(Arrays.asList(m1, m2, m3, m4));
+
 		
 		Usuario u1 = new Usuario(0, "Ademiro", "Administrador", "admin", "admin", "emaildoademiro@gmail.com");
 		Usuario u2 = new Usuario(0, "SouUmAluno", "Aluno", "alunoTeste", "123456", "emaildealuno@gmail.com");

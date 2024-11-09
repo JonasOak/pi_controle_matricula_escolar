@@ -67,7 +67,7 @@ public class MatriculaService {
 		int limiteAlunos = obj.getDisciplina().getLimiteAlunos();
 
 		if (matriculas.size() >= limiteAlunos) {
-			throw new LimiteException("O limite de alunos para esta disciplina já foi atingido.");
+			throw new LimiteException("Limite de alunos atingido.");
 		}
 		return repository.save(obj);
 	}

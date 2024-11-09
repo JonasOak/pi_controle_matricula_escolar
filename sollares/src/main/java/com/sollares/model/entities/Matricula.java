@@ -2,9 +2,8 @@ package com.sollares.model.entities;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.Date;
+import java.sql.Date;
 import java.util.Objects;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -25,6 +24,8 @@ public class Matricula implements Serializable {
 	private BigDecimal valorPago;
 	private String periodo;
 	
+	
+	
 	@ManyToOne
 	@JoinColumn(name = "id_disciplina")
 	private Disciplina disciplina;
@@ -44,16 +45,16 @@ public class Matricula implements Serializable {
 	}
 
 
-	public Matricula(int idMat, Disciplina disciplina, Pessoa aluno, Date dataMatricula, BigDecimal valorPago,
-			String periodo) {
-		super();
-		this.idMat = idMat;
-		this.disciplina = disciplina;
-		this.aluno = aluno;
-		this.dataMatricula = dataMatricula;
-		this.valorPago = valorPago;
-		this.periodo = periodo;
+	public Matricula(Disciplina disciplina, Pessoa aluno, Date dataMatricula, BigDecimal valorPago, String periodo) {
+	    this.disciplina = disciplina;
+	    this.aluno = aluno;
+	    this.dataMatricula = dataMatricula;
+	    this.valorPago = valorPago;
+	    this.periodo = periodo;
 	}
+
+
+
 	
 	public int getIdMat() {
 		return idMat;
