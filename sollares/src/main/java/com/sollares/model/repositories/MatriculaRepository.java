@@ -1,5 +1,6 @@
 package com.sollares.model.repositories;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -31,4 +32,9 @@ public interface MatriculaRepository extends JpaRepository<Matricula, Integer> {
     
     @Query("SELECT p FROM Pessoa p")
     List<Pessoa> buscarPessoas();
+    
+   // @Query("SELECT SUM(m.valorPago) FROM Matricula m")
+   // BigDecimal calcularFaturamentoTotal(); 
+
+
 }

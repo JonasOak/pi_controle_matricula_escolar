@@ -85,33 +85,37 @@
 		</div>
 	</nav>
 	<div class=" formulario-pessoa">
-		<!--
-		<form class="row g-3" th:action="@{/}" method="post" th:object="${}">
+		<form class="row g-3" th:action="@{/faturamento/consultar}"
+			method="post">
 			<h1>Faturamento</h1>
 			<div class="col-md-2">
-				<label for="inputDate" class="form-label">Data Inicial</label>
-				<input type="date" class="form-control" id="inputDate4" th:field="*{}">
+				<label for="inputDate" class="form-label">Data Inicial</label> <input
+					type="date" class="form-control" id="dataInicial"
+					th:field="*{dataMatricula}">
 			</div>
 			<div class="col-md-2">
-				<label for="inputDate" class="form-label">Data Final</label>
-				<input type="date" class="form-control" id="inputDate4" th:field="*{}">
+				<label for="inputDate" class="form-label">Data Final</label> <input
+					type="date" class="form-control" id="dataFinal"
+					th:field="*{dataMatricula}">
 			</div>
 			<div class="col-md-3 py-2">
-				<label for="disciplina">Disciplina:</label>
-				<select id="disciplina" name="disciplina" class="form-select" th:field="*{nomeDisciplina}">
+				<label for="disciplina">Disciplina:</label> <select id="disciplina"
+					name="disciplina" class="form-select" th:field="*{nomeDisciplina}">
 					<option value="" disabled selected>Selecione</option>
-					<option th:each="disciplina : ${listaDisciplinas}" th:value="${disciplina.codigo}"
+					<option th:each="disciplina : ${listaDisciplinas}"
+						th:value="${disciplina.codigo}"
 						th:text="${disciplina.nomeDisciplina}"></option>
 				</select>
 			</div>
 			<div class="col-md-2">
-				<label for="inputAddress2" class="form-label">Faturamento</label>
-				<input disabled type="text" class="form-control" id="inputAddress2" th:field="*{}"
+				<label for="valorTotal" class="form-label">Faturamento</label> <input
+					disabled type="text" class="form-control" id="valorTotal"
+					th:field="*{valorTotal}" th:value="${valorTotal}"
 					placeholder="Valor Total do Faturamento">
 			</div>
-		</form>-->
-		<div class="botao-consultar">
-			<button type="submit" class="btn btn-primary btn-lg" th:onclick="">Consultar</button>
+		</form>
+		<div class="botao-consultar col-12">
+			<button type="submit" class="btn btn-primary btn-lg">Consultar</button>
 		</div>
 	</div>
 	<div>

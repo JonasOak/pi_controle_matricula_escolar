@@ -1,5 +1,6 @@
 package com.sollares.controller.resources;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
@@ -58,6 +59,9 @@ public class MatriculaResources {
 			model.addAttribute("msgFaltaLogin", "Por favor, faça login para acessar o portal.");
 			return "redirect:/index";
 		}
+		
+		
+		
 		return "faturamento";
 	}
 
@@ -208,4 +212,9 @@ public class MatriculaResources {
 		}
 		return "redirect:/matriculas";
 	}
+	
+
+	
+
+
 }

@@ -1,5 +1,6 @@
 package com.sollares.controller.services;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
@@ -75,6 +76,12 @@ public class MatriculaService {
 	public void deletar(Integer id) {
 		repository.deleteById(id);
 	}
+	
+	//public BigDecimal calcularFaturamentoPorPeriodo(String dataInicial, String dataFinal, String disciplina) {
+	 //   return repository.calcularFaturamento(dataInicial, dataFinal, disciplina);
+	//}
+
+
 
 	private void atualizarDados(Matricula entity, Matricula obj) {
 		entity.setAluno(obj.getAluno());
@@ -83,4 +90,7 @@ public class MatriculaService {
 		entity.setDataMatricula(obj.getDataMatricula());
 		entity.setValorPago(obj.getValorPago());
 	}
+	
+	
+
 }
