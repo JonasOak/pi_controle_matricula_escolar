@@ -33,8 +33,8 @@ public interface MatriculaRepository extends JpaRepository<Matricula, Integer> {
     @Query("SELECT p FROM Pessoa p")
     List<Pessoa> buscarPessoas();
     
-   // @Query("SELECT SUM(m.valorPago) FROM Matricula m")
-   // BigDecimal calcularFaturamentoTotal(); 
+   @Query("SELECT SUM(m.valorPago) FROM Matricula m WHERE m.disciplina = :disciplina") 
+    BigDecimal consultarFaturamento(@Param("disciplina") Disciplina disciplina);
 
 
 }

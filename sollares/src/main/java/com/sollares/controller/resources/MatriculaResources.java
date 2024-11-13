@@ -59,9 +59,7 @@ public class MatriculaResources {
 			model.addAttribute("msgFaltaLogin", "Por favor, faça login para acessar o portal.");
 			return "redirect:/index";
 		}
-		
-		
-		
+
 		return "faturamento";
 	}
 
@@ -80,12 +78,12 @@ public class MatriculaResources {
 	@PostMapping("/consultar/cursoProfessor")
 	public String consultar(@RequestParam("professorId") Integer professorId, Model model) {
 		Optional<Pessoa> professorOpt = pessoaRepository.findById(professorId);
-	    Pessoa professor = professorOpt.orElse(null);
-	    List<Disciplina> disciplinas = matriculaRepository.buscarDisciplinasPorProfessor(professorId);
-	    
-	    model.addAttribute("disciplinas", disciplinas);
-	    model.addAttribute("professor", professor);
-	    return "listarCursoProfessor";
+		Pessoa professor = professorOpt.orElse(null);
+		List<Disciplina> disciplinas = matriculaRepository.buscarDisciplinasPorProfessor(professorId);
+
+		model.addAttribute("disciplinas", disciplinas);
+		model.addAttribute("professor", professor);
+		return "listarCursoProfessor";
 	}
 
 	@GetMapping("/cursoAluno")
@@ -99,16 +97,16 @@ public class MatriculaResources {
 		model.addAttribute("alunos", alunos);
 		return "cursoAluno";
 	}
-	
+
 	@PostMapping("/consultar/cursoAluno")
 	public String consultarCursosAluno(@RequestParam("alunoId") Integer alunoId, Model model) {
-	    Optional<Pessoa> alunoOpt = pessoaRepository.findById(alunoId);
-	    Pessoa aluno = alunoOpt.orElse(null);
-	    List<Disciplina> disciplinas = matriculaRepository.buscarDisciplinasPorAluno(alunoId);
-	    
-	    model.addAttribute("disciplinas", disciplinas);
-	    model.addAttribute("aluno", aluno);
-	    return "listarCursoAluno";
+		Optional<Pessoa> alunoOpt = pessoaRepository.findById(alunoId);
+		Pessoa aluno = alunoOpt.orElse(null);
+		List<Disciplina> disciplinas = matriculaRepository.buscarDisciplinasPorAluno(alunoId);
+
+		model.addAttribute("disciplinas", disciplinas);
+		model.addAttribute("aluno", aluno);
+		return "listarCursoAluno";
 	}
 
 	@GetMapping("/matriculas")
@@ -213,8 +211,24 @@ public class MatriculaResources {
 		return "redirect:/matriculas";
 	}
 	
+	@PostMapping("/faturamentoTotal")
+	public String calcularFaturamento(@RequestParam("disciplina") Integer disciplinaCodigo, Model model) {
 
-	
+	    List<Disciplina> listaDisciplinas = servicoDisciplina.buscarTodos();
+
+	    // Recupera a disciplina com base no código (disciplinaCodigo)
+	    Disciplina disciplina = servicoDisciplina.buscarPorId(disciplinaCodigo);
+
+	    BigDecimal faturamentoTotal = servico.consultarFaturamento(disciplina);
+
+	    // Passa os valores para a view
+	    model.addAttribute("faturamentoTotal", faturamentoTotal);
+	    model.addAttribute("listaDisciplinas", listaDisciplinas);
+
+	    return "faturamento";  
+	}
+
+
 
 
 }

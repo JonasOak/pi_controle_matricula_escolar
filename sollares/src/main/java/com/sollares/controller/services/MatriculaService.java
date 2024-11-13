@@ -77,10 +77,9 @@ public class MatriculaService {
 		repository.deleteById(id);
 	}
 	
-	//public BigDecimal calcularFaturamentoPorPeriodo(String dataInicial, String dataFinal, String disciplina) {
-	 //   return repository.calcularFaturamento(dataInicial, dataFinal, disciplina);
-	//}
-
+	public BigDecimal consultarFaturamento(Disciplina disciplina) {
+	    return repository.consultarFaturamento(disciplina);
+	}
 
 
 	private void atualizarDados(Matricula entity, Matricula obj) {

@@ -85,18 +85,18 @@
 		</div>
 	</nav>
 	<div class=" formulario-pessoa">
-		<form class="row g-3" th:action="@{/faturamento/consultar}"
+	<form class="row g-3" th:action="@{/faturamentoTotal}"
 			method="post">
 			<h1>Faturamento</h1>
 			<div class="col-md-2">
 				<label for="inputDate" class="form-label">Data Inicial</label> <input
-					type="date" class="form-control" id="dataInicial"
-					th:field="*{dataMatricula}">
+					type="date" class="form-control" 
+					th:field="*{data_matricula}">
 			</div>
 			<div class="col-md-2">
 				<label for="inputDate" class="form-label">Data Final</label> <input
-					type="date" class="form-control" id="dataFinal"
-					th:field="*{dataMatricula}">
+					type="date" class="form-control" 
+					th:field="*{data_matricula}">
 			</div>
 			<div class="col-md-3 py-2">
 				<label for="disciplina">Disciplina:</label> <select id="disciplina"
@@ -109,9 +109,9 @@
 			</div>
 			<div class="col-md-2">
 				<label for="valorTotal" class="form-label">Faturamento</label> <input
-					disabled type="text" class="form-control" id="valorTotal"
-					th:field="*{valorTotal}" th:value="${valorTotal}"
-					placeholder="Valor Total do Faturamento">
+					disabled type="text" class="form-control" 
+				    th:value="${faturamentoTotal}"
+					placeholder="">
 			</div>
 		</form>
 		<div class="botao-consultar col-12">
@@ -130,7 +130,6 @@
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
 		crossorigin="anonymous"></script>
-</body>
 </body>
 
 </html>
