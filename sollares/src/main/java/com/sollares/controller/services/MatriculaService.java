@@ -1,6 +1,7 @@
 package com.sollares.controller.services;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -10,7 +11,6 @@ import org.springframework.stereotype.Service;
 import com.sollares.exception.LimiteException;
 import com.sollares.model.entities.Disciplina;
 import com.sollares.model.entities.Matricula;
-import com.sollares.model.entities.Pessoa;
 import com.sollares.model.repositories.DisciplinaRepository;
 import com.sollares.model.repositories.MatriculaRepository;
 import com.sollares.model.repositories.PessoaRepository;
@@ -77,10 +77,9 @@ public class MatriculaService {
 		repository.deleteById(id);
 	}
 	
-	public BigDecimal consultarFaturamento(Disciplina disciplina) {
-	    return repository.consultarFaturamento(disciplina);
+	public BigDecimal consultarFaturamento(Disciplina disciplina, LocalDate dataInicial, LocalDate dataFinal) {
+	    return repository.consultarFaturamento(disciplina, dataInicial, dataFinal);
 	}
-
 
 	private void atualizarDados(Matricula entity, Matricula obj) {
 		entity.setAluno(obj.getAluno());

@@ -1,10 +1,12 @@
 package com.sollares.controller.resources;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -59,6 +61,9 @@ public class MatriculaResources {
 			model.addAttribute("msgFaltaLogin", "Por favor, faça login para acessar o portal.");
 			return "redirect:/index";
 		}
+		
+		List<Disciplina> listaDisciplinas = servicoDisciplina.buscarTodos();
+	    model.addAttribute("listaDisciplinas", listaDisciplinas);
 
 		return "faturamento";
 	}
@@ -210,25 +215,22 @@ public class MatriculaResources {
 		}
 		return "redirect:/matriculas";
 	}
-	
+
 	@PostMapping("/faturamentoTotal")
-	public String calcularFaturamento(@RequestParam("disciplina") Integer disciplinaCodigo, Model model) {
+	public String calcularFaturamento(@RequestParam("disciplina") Integer disciplinaCodigo,
+			@RequestParam("dataInicial") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dataInicial,
+			@RequestParam("dataFinal") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dataFinal,
+			Model model) {
 
-	    List<Disciplina> listaDisciplinas = servicoDisciplina.buscarTodos();
+		List<Disciplina> listaDisciplinas = servicoDisciplina.buscarTodos();
+		Disciplina disciplina = servicoDisciplina.buscarPorId(disciplinaCodigo);
 
-	    // Recupera a disciplina com base no código (disciplinaCodigo)
-	    Disciplina disciplina = servicoDisciplina.buscarPorId(disciplinaCodigo);
+		BigDecimal faturamentoTotal = servico.consultarFaturamento(disciplina, dataInicial, dataFinal);
 
-	    BigDecimal faturamentoTotal = servico.consultarFaturamento(disciplina);
+		model.addAttribute("faturamentoTotal", faturamentoTotal);
+		model.addAttribute("listaDisciplinas", listaDisciplinas);
 
-	    // Passa os valores para a view
-	    model.addAttribute("faturamentoTotal", faturamentoTotal);
-	    model.addAttribute("listaDisciplinas", listaDisciplinas);
-
-	    return "faturamento";  
+		return "faturamento";
 	}
-
-
-
 
 }
