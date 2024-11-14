@@ -54,4 +54,12 @@ CREATE TABLE tb_usuario (
 INSERT INTO tb_usuario (nome, cargo, login, senha, email) 
 VALUES 
     ('Layla dos Santos Nascimento', 'Administrador', 'layla', '1234', 'layla@exemplo.com'),
-    ('Jonas Gabriel', 'Administrador', 'jonas', '123456', 'jonas@exemplo.com');
+    ('Jonas Gabriel', 'Administrador', 'admin', 'admin', 'jonas@exemplo.com');
+    
+    INSERT INTO tb_pessoa (nome_pessoa, endereco, uf, telefone, cpf, email)
+VALUES 
+('Pedro', 'Rua das Flores, 123', 'SP', '(11) 98765-4321', '123.456.789-00', 'pedro@gmail.com'),
+('Luiz', 'Avenida Central, 456', 'RJ', '(21) 91234-5678', '234.567.890-11', 'luiz@gmail.com'),
+('Ramon', 'Praça do Sol, 789', 'MG', '(31) 93456-7890', '345.678.901-22', 'ramon@gmail.com'),
+('Felipe', 'Rua do Porto, 101', 'RS', '(51) 99876-5432', '456.789.012-33', 'felipe@gmail.com'),
+('Gertrudes', 'Avenida das Palmeiras, 202', 'BA', '(71) 97654-3210', '567.890.123-44', 'gertrudes@gmail.com');
