@@ -89,7 +89,7 @@
 			<label for="selectProfessor" class="form-label">Selecione o
 				Professor</label> <select class="form-control" id="selectProfessor"
 				name="professorId">
-				<option value="">Selecione</option>
+				<option disabled value="">Selecione</option>
 				<option th:each="professor : ${professores}"
 					th:value="${professor.idPessoa}" th:text="${professor.nomePessoa}"></option>
 			</select>

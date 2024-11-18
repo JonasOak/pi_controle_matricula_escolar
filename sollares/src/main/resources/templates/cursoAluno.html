@@ -88,7 +88,7 @@
 			method="post">
 			<label for="selectAluno" class="form-label">Selecione o Aluno</label>
 			<select class="form-control" id="selectAluno" name="alunoId">
-				<option value="">Selecione</option>
+				<option disabled value="">Selecione</option>
 				<option th:each="aluno : ${alunos}" th:value="${aluno.idPessoa}"
 					th:text="${aluno.nomePessoa}"></option>
 			</select>
