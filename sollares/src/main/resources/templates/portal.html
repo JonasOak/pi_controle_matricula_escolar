@@ -9,11 +9,7 @@
 	rel="stylesheet"
 	integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
 	crossorigin="anonymous">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link
-	href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;400;700&display=swap"
-	rel="stylesheet">
+
 <link rel="stylesheet" href="../static/css/portal.css"
 	th:href="@{/css/portal.css}">
 <title>Portal</title>
@@ -21,11 +17,6 @@
 	type="image/x-icon">
 </head>
 <body>
-	<!-- Layla, se for limitar o campo de acordo com o cargo, basta deixar *-> th:if="${usuarioLogado.cargo == 'Cargo'}" <-* 
-	os cargos são Aluno e Professor. Deixei no TestConfig um usuário padrão chamado Administrador
-	Para deixar um campo ser acessado por Administrador e/ou Aluno ou Professor, deve ser o seguinte padrão:
-	th:if="${usuarioLogado.cargo == 'Professor' or usuarioLogado.cargo == 'Administrador'}" -< para Professor e Administrador
-	th:if="${usuarioLogado.cargo == 'Aluno' or usuarioLogado.cargo == 'Administrador'}" <- para Aluno e Administrador-->
 	<nav class="navbar navbar-expand-lg bg-body-tertiary">
 		<div class="container-fluid">
 			<h1 class="navbar-titulo">SOLLARES</h1>
